@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Sophisticated Dark Theme — 纯粹深色 + 暖金点缀
+   ========================================================= */
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #141414;
+  --bg-card-hover: #1a1a1a;
+  --text-primary: #f0eee6;
+  --text-secondary: #a8a59a;
+  --text-muted: #5c5a52;
+  --accent-primary: #c9a84c;
+  --accent-secondary: #e8d5a3;
+  --accent-glow: rgba(201, 168, 76, 0.12);
+  --accent-warm: #d4a373;
+  --accent-gold: #c9a84c;
+  --border-color: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.1);
+  --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 12px 56px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 60px rgba(201, 168, 76, 0.06);
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-warm: var(--accent-warm);
+  --color-accent-gold: var(--accent-gold);
+  --color-border-color: var(--border-color);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ---- Base ---- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: rgba(201, 168, 76, 0.3);
+  color: var(--text-primary);
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ---- Utility: glass morphism ---- */
+@utility glass {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+}
+
+/* ---- Utility: text gradient (warm gold) ---- */
+@utility text-gradient {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility text-gradient-warm {
+  background: linear-gradient(135deg, var(--accent-warm), var(--accent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Utility: oversized section heading ---- */
+@utility section-heading {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--text-primary);
+}
+
+@utility section-heading-muted {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--text-secondary);
+  opacity: 0.4;
+}
+
+/* ---- Animations ---- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes breathe-glow {
+  0%, 100% { box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4); }
+  50% { box-shadow: 0 12px 56px rgba(201, 168, 76, 0.08); }
+}
+@utility animate-breathe-glow {
+  animation: breathe-glow 4s ease-in-out infinite;
+}
