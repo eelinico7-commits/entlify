@@ -1,12 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import JourneyCard from "./JourneyCard";
 import RoleCards from "./RoleCards";
 import SkillsCard from "./SkillsCard";
 import CreatorHub from "./CreatorHub";
 import InterestsCard from "./InterestsCard";
-import GameCard from "./GameCard";
+
+const GameCard = dynamic(() => import("./GameCard"), { ssr: false });
 
 const containerVariants = {
   hidden: { opacity: 0 },
