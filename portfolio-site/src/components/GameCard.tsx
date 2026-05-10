@@ -91,6 +91,9 @@ export default function GameCard() {
   }, []);
 
   const close = useCallback(() => {
+    const gs = gameRef.current;
+    gs.running = false;
+    cancelAnimationFrame(gs.frameId);
     setExpanded(false);
     document.body.style.overflow = "";
   }, []);
@@ -175,6 +178,17 @@ export default function GameCard() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // ── ESC key exit ────────────────────────────────────────────────────
+
+  useEffect(() => {
+    if (!expanded) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [expanded, close]);
 
   // ── Game loop (expanded) ─────────────────────────────────────────────
 
@@ -542,13 +556,13 @@ export default function GameCard() {
 
                 {/* Close button */}
                 <button
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-white/70 transition-all duration-200 hover:bg-white/15 hover:text-white"
+                  className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm text-white/70 transition-all duration-200 hover:bg-white/15 hover:text-white"
                   onClick={close}
                   aria-label="关闭游戏"
                 >
                   <svg
-                    width="18"
-                    height="18"
+                    width="16"
+                    height="16"
                     viewBox="0 0 18 18"
                     fill="none"
                   >
@@ -559,6 +573,7 @@ export default function GameCard() {
                       strokeLinecap="round"
                     />
                   </svg>
+                  Exit (ESC)
                 </button>
               </div>
 
