@@ -458,7 +458,7 @@ export default function GameCard() {
       {/* ── Card (default / idle state) ── */}
       <motion.div
         ref={cardRef}
-        className="relative cursor-pointer overflow-hidden rounded-3xl"
+        className="relative cursor-pointer overflow-hidden rounded-2xl border border-white/[0.06]"
         style={{
           perspective: 1000,
           transformStyle: "preserve-3d",

@@ -44,12 +44,12 @@ export default function BentoGrid() {
       </motion.div>
 
       {/* 领导力角色 */}
-      <motion.div variants={itemVariants}>
+      <motion.div variants={itemVariants} id="advantages">
         <RoleCards />
       </motion.div>
 
       {/* 核心技能 */}
-      <motion.div variants={itemVariants}>
+      <motion.div variants={itemVariants} id="skills">
         <SkillsCard />
       </motion.div>
 

@@ -60,7 +60,7 @@ const itemVariants = {
 
 export default function RoleCards() {
   return (
-    <div className="flex h-full flex-col rounded-3xl bg-bg-card p-8 shadow-card transition-all duration-500 ease-in-out hover:border hover:border-white/[0.06]">
+    <div className="flex h-full flex-col rounded-2xl border border-white/[0.06] bg-bg-card p-8 shadow-card transition-all duration-500 ease-in-out hover:scale-[1.01] hover:border-white/[0.12] hover:shadow-[0_0_80px_rgba(197,160,89,0.08)]">
       {/* Terminal-style header */}
       <div className="mb-6 flex items-center gap-3">
         <span className="font-mono text-xs text-accent-primary/60">//</span>

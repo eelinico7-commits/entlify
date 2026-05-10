@@ -2,18 +2,11 @@
 
 import { motion } from "framer-motion";
 
-const identities = [
-  "AIGC Developer",
-  "美团AIGC俱乐部主席",
-  "新东方校园大使",
-  "极客 & 探索者",
-];
-
 const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.25,
+      staggerChildren: 0.2,
       delayChildren: 0.1,
     },
   },
@@ -30,51 +23,64 @@ const itemVariants = {
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-24">
       <motion.div
         className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-start"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Over-sized name */}
-        <motion.h1
-          className="section-heading mt-4"
+        {/* Eyebrow */}
+        <motion.span
+          className="mb-4 font-mono text-[11px] tracking-[0.25em] text-accent-primary/70 uppercase"
           variants={itemVariants}
         >
-          杨存邦
+          Portfolio · 2025
+        </motion.span>
+
+        {/* Oversized title */}
+        <motion.h1
+          className="section-heading mt-2 leading-[1.05]"
+          variants={itemVariants}
+        >
+          <span className="text-gradient">Medical Student</span>
+          <br />
+          <span className="text-text-secondary/60">&</span>{" "}
+          <span className="text-text-primary">AI Explorer</span>
         </motion.h1>
 
-        {/* Identity row — clean inline */}
+        {/* Chinese name + identity */}
         <motion.div
-          className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5"
+          className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2"
           variants={itemVariants}
         >
-          {identities.map((id, i) => (
-            <span key={id} className="flex items-center gap-x-3">
-              <span className="text-base font-light tracking-wide text-text-secondary sm:text-lg">
-                {id}
-              </span>
-              {i < identities.length - 1 && (
-                <span className="inline-block h-1 w-1 rounded-full bg-text-muted/40" />
-              )}
-            </span>
-          ))}
+          <span className="text-lg font-medium tracking-tight text-text-primary/90">
+            杨存邦
+          </span>
+          <span className="hidden h-1 w-1 rounded-full bg-text-muted/40 sm:inline-block" />
+          <span className="text-sm leading-relaxed text-text-secondary/70">
+            医学生 · AIGC 开发者 · 商业思维
+          </span>
         </motion.div>
 
-        {/* Tagline */}
-        <motion.p
-          className="mt-10 max-w-xl text-base leading-relaxed text-text-muted sm:text-lg"
+        {/* Key roles */}
+        <motion.div
+          className="mt-8 flex flex-wrap items-center gap-3"
           variants={itemVariants}
         >
-          复合型人才 · 极客精神 · 商业思维
-          <br />
-          <span className="text-text-secondary/60">
-            从校园到领航者的成长轨迹
-          </span>
-        </motion.p>
+          {["新东方校园大使", "美团AIGC俱乐部主席", "独立开发者"].map(
+            (role) => (
+              <span
+                key={role}
+                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 font-mono text-[11px] tracking-wide text-text-muted transition-colors duration-300 hover:border-accent-primary/30 hover:text-accent-primary/80"
+              >
+                {role}
+              </span>
+            )
+          )}
+        </motion.div>
 
-        {/* Refined scroll indicator — bottom-right */}
+        {/* Scroll indicator */}
         <motion.div
           className="fixed bottom-10 right-10 z-20 hidden flex-col items-center gap-2 sm:flex"
           initial={{ opacity: 0 }}
