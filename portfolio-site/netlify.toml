@@ -1,3 +1,4 @@
 [build]
-  command = "next build"
+  base = "portfolio-site"
+  command = "npx next build"
   publish = "out"
