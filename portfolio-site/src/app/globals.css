@@ -11,16 +11,16 @@
   --text-primary: #f0eee6;
   --text-secondary: #94a3b8;
   --text-muted: #5c5a52;
-  --accent-primary: #c5a059;
-  --accent-secondary: #e8d5a3;
-  --accent-glow: rgba(197, 160, 89, 0.12);
-  --accent-warm: #d4a373;
-  --accent-gold: #c5a059;
+  --accent-primary: #a88644;
+  --accent-secondary: #c9b578;
+  --accent-glow: rgba(168, 134, 68, 0.12);
+  --accent-warm: #c4946a;
+  --accent-gold: #a88644;
   --border-color: rgba(255, 255, 255, 0.05);
   --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.4);
   --shadow-card-hover: 0 12px 56px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 60px rgba(197, 160, 89, 0.06);
-  --shadow-glow-hover: 0 0 80px rgba(197, 160, 89, 0.1);
+  --shadow-glow: 0 0 60px rgba(168, 134, 68, 0.06);
+  --shadow-glow-hover: 0 0 80px rgba(168, 134, 68, 0.1);
 }
 
 @theme inline {
@@ -59,15 +59,15 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(197, 160, 89, 0.03) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(197, 160, 89, 0.02) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(168, 134, 68, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(168, 134, 68, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
 
 /* ---- Selection ---- */
 ::selection {
-  background: rgba(201, 168, 76, 0.3);
+  background: rgba(168, 134, 68, 0.3);
   color: var(--text-primary);
 }
 
@@ -136,10 +136,48 @@ body::before {
   animation: float 6s ease-in-out infinite;
 }
 
-@keyframes breathe-glow {
-  0%, 100% { box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4); }
-  50% { box-shadow: 0 12px 56px rgba(201, 168, 76, 0.08); }
+/* ---- Card gold border glow (flowing light effect) ---- */
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }
-@utility animate-breathe-glow {
-  animation: breathe-glow 4s ease-in-out infinite;
+
+@keyframes card-glow-spin {
+  0% { --glow-angle: 0deg; }
+  100% { --glow-angle: 360deg; }
+}
+
+@utility card-glow {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    z-index: -1;
+    background: conic-gradient(
+      from var(--glow-angle, 0deg) at 50% 50%,
+      transparent 0deg,
+      rgba(168, 134, 68, 0.20) 50deg,
+      rgba(201, 181, 120, 0.18) 100deg,
+      transparent 150deg,
+      rgba(168, 134, 68, 0.08) 220deg,
+      transparent 300deg,
+      transparent 360deg
+    );
+    animation: card-glow-spin 7s linear infinite;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    padding: 1px;
+    pointer-events: none;
+  }
 }

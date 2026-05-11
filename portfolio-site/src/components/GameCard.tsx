@@ -486,7 +486,7 @@ export default function GameCard() {
           rotateX: 4,
           rotateY: -4,
           scale: 1.02,
-          boxShadow: "0 12px 56px rgba(201, 168, 76, 0.12)",
+          boxShadow: "0 12px 56px rgba(168, 134, 68, 0.12)",
           transition: { type: "spring", stiffness: 250, damping: 18 },
         }}
         onClick={open}
