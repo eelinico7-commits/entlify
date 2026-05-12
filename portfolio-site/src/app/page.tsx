@@ -5,6 +5,7 @@ import NavBar from "@/components/NavBar";
 import Hero from "@/components/Hero";
 import ImpactDashboard from "@/components/ImpactDashboard";
 import BentoGrid from "@/components/BentoGrid";
+import Guestbook from "@/components/Guestbook";
 
 const ParticleBackground = dynamic(
   () => import("@/components/ParticleBackground"),
@@ -33,6 +34,11 @@ export default function Home() {
         {/* Bento Box Content Hub */}
         <section id="experience">
           <BentoGrid />
+        </section>
+
+        {/* Guestbook / Message Board */}
+        <section id="guestbook" className="mt-32">
+          <Guestbook />
         </section>
       </div>
 
