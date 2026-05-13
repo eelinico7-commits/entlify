@@ -2,17 +2,33 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  "https://weyhuopnfwdryokojkva.supabase.co",
+  "sb_publishable_lm3y_VvHpRKVSFPLNojKPA_OSJuhgOO"
+);
 
 export default function Guestbook() {
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!contact.trim() || !message.trim()) return;
-    // TODO: 接入后端 API，将留言发送到服务器
-    console.log("留言提交:", { contact, message });
+
+    const { error } = await supabase.from("messages").insert({
+      name: contact.trim(),
+      content: message.trim(),
+    });
+
+    if (error) {
+      console.error("Supabase insert error:", error);
+      alert("提交失败: " + error.message);
+      return;
+    }
+
     setSubmitted(true);
     setContact("");
     setMessage("");
