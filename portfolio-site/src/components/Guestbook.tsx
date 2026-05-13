@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Guestbook() {
   const [contact, setContact] = useState("");
@@ -130,7 +131,6 @@ export default function Guestbook() {
 
         {/* ============ RIGHT: QR / Brand Card ============ */}
         <div className="rounded-3xl border border-white/[0.06] bg-[var(--bg-card)] p-8 shadow-[var(--shadow-card)] transition-all duration-500 hover:border-white/[0.10] hover:shadow-[var(--shadow-card-hover)] sm:p-10">
-          {/* 二维码占位区 */}
           <div className="flex flex-col items-center">
             <h3 className="text-xl font-semibold tracking-tight text-[var(--text-primary)]">
               找到我
@@ -139,58 +139,21 @@ export default function Guestbook() {
               扫码添加微信，备注「合作」更快通过
             </p>
 
-            {/* ---- QR Code Placeholder ---- */}
-            <div className="relative mt-8 flex aspect-square w-full max-w-[220px] items-center justify-center overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-500 hover:border-accent-primary/20 hover:shadow-[var(--shadow-glow-hover)]">
-              {/* Decorative grid dots */}
-              <div
-                className="absolute inset-0 opacity-[0.03]"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(circle, #fff 0.5px, transparent 0.5px)",
-                  backgroundSize: "16px 16px",
-                }}
+            {/* ---- QR Code ---- */}
+            <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.5)] transition-all duration-500 hover:shadow-[0_12px_56px_rgba(0,0,0,0.6)]">
+              <Image
+                src="/wechat-qr.png"
+                alt="杨存邦微信二维码"
+                width={220}
+                height={220}
+                className="block h-auto w-full max-w-[200px] sm:max-w-[220px]"
               />
-              {/* Placeholder content */}
-              <div className="relative flex flex-col items-center gap-3">
-                <svg
-                  className="h-12 w-12 text-accent-primary/30"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1}
-                    d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
-                  />
-                </svg>
-                <span className="text-xs text-[var(--text-muted)]">
-                  QR Code placeholder
-                </span>
-                {/* TODO: 替换为你的微信二维码图片
-                    <Image
-                      src="/images/wechat-qr.jpg"
-                      alt="微信二维码"
-                      fill
-                      className="object-cover"
-                    />
-                */}
-              </div>
             </div>
 
-            {/* ---- Brand info placeholder ---- */}
-            <div className="mt-8 w-full space-y-3 rounded-xl border border-white/[0.04] bg-white/[0.02] p-5 text-center">
-              <p className="text-sm font-medium text-[var(--text-primary)]">
-                杨存邦
-              </p>
-              <p className="text-xs leading-relaxed text-[var(--text-muted)]">
-                AIGC Developer · 美团AIGC俱乐部主席
-                <br />
-                新东方校园大使 · 极客与探索者
-              </p>
-              {/* TODO: 替换为你的个人品牌标识 / Logo */}
-            </div>
+            {/* ---- Caption ---- */}
+            <p className="mt-5 max-w-[240px] text-center text-sm leading-relaxed text-[var(--text-muted)]">
+              扫码添加破局日记主理人，围观实战搞钱日常
+            </p>
           </div>
         </div>
       </div>
