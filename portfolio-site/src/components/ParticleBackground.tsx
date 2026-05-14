@@ -10,7 +10,10 @@ function ParticlesMesh() {
   const mouseRef = useRef({ x: 0, y: 0 });
   const currentMouseRef = useRef({ x: 0, y: 0 });
 
+  const isMobile = typeof window !== "undefined" && /Mobi|Android/i.test(navigator.userAgent);
+
   useEffect(() => {
+    if (isMobile) return;
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = {
         x: (e.clientX / window.innerWidth) * 2 - 1,
@@ -19,10 +22,11 @@ function ParticlesMesh() {
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [isMobile]);
 
   const [positions, colors] = useMemo(() => {
-    const count = 2000;
+    const isMobile = typeof window !== "undefined" && /Mobi|Android/i.test(navigator.userAgent);
+    const count = isMobile ? 500 : 2000;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const colorA = new THREE.Color("#6c5ce7");

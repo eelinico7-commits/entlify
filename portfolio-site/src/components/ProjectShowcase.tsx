@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
+import { staggerContainer, staggerItem } from "@/lib/animations";
 
 const projects = [
   {
@@ -32,20 +33,20 @@ const projects = [
   },
 ];
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
+const containerVariants = {
+  ...staggerContainer,
   visible: {
-    opacity: 1,
+    ...staggerContainer.visible,
     transition: { staggerChildren: 0.1 },
   },
 };
 
-const itemVariants: Variants = {
+const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 18 },
+    transition: { type: "spring" as const, stiffness: 100, damping: 18 },
   },
 };
 

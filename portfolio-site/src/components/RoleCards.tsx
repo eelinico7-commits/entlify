@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { smoothTransition } from "@/lib/animations";
 
 const advantages = [
   {
@@ -54,7 +55,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
+    transition: { duration: 0.6, ease: smoothTransition.ease as [number, number, number, number] },
   },
 };
 

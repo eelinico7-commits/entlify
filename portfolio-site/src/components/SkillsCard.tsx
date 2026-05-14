@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { smoothTransition } from "@/lib/animations";
 
 interface SkillGroup {
   icon: string;
@@ -44,7 +45,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
+    transition: { duration: 0.5, ease: smoothTransition.ease as [number, number, number, number] },
   },
 };
 

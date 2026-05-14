@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useScrollProgress } from "@/lib/useScrollProgress";
 
 const navItems = [
   { label: "首页", href: "#hero" },
@@ -11,6 +12,7 @@ const navItems = [
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
+  const scrollProgress = useScrollProgress();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -26,6 +28,12 @@ export default function NavBar() {
           : "bg-transparent"
       }`}
     >
+      {/* Scroll progress bar */}
+      <div
+        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-accent-primary/60 to-accent-secondary/60 transition-opacity duration-300"
+        style={{ width: `${scrollProgress * 100}%`, opacity: scrollProgress > 0 ? 1 : 0 }}
+      />
+
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
         <a
           href="#hero"

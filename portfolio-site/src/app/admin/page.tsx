@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
-  "https://weyhuopnfwdryokojkva.supabase.co",
-  "sb_publishable_lm3y_VvHpRKVSFPLNojKPA_OSJuhgOO"
-);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+const ADMIN_PASSWORD = "admin123";
 
 type Message = {
   id: number;
@@ -16,10 +18,14 @@ type Message = {
 };
 
 export default function AdminPage() {
+  const [authenticated, setAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!authenticated) return;
     supabase
       .from("messages")
       .select("*")
@@ -29,33 +35,77 @@ export default function AdminPage() {
         else setMessages(data ?? []);
         setLoading(false);
       });
-  }, []);
+  }, [authenticated]);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      setAuthenticated(true);
+      setPasswordError(false);
+    } else {
+      setPasswordError(true);
+      setPassword("");
+    }
+  };
+
+  if (!authenticated) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-bg-primary p-6">
+        <div className="w-full max-w-sm rounded-2xl border border-white/[0.06] bg-bg-card p-8 shadow-card">
+          <h1 className="mb-2 text-xl font-semibold tracking-tight text-text-primary">
+            留言管理
+          </h1>
+          <p className="mb-6 text-sm text-text-secondary">请输入管理员密码</p>
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="密码"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-text-primary placeholder:text-text-muted outline-none transition-all duration-300 focus:border-accent-primary/50 focus:bg-white/[0.05]"
+              autoFocus
+            />
+            {passwordError && (
+              <p className="text-xs text-red-400">访问密码错误</p>
+            )}
+            <button
+              type="submit"
+              className="w-full rounded-xl border border-accent-primary/20 bg-gradient-to-b from-accent-primary/15 to-accent-primary/5 px-6 py-3 text-sm font-medium text-accent-secondary transition-all duration-300 hover:border-accent-primary/40 hover:from-accent-primary/25 hover:to-accent-primary/10"
+            >
+              验证
+            </button>
+          </form>
+        </div>
+      </main>
+    );
+  }
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] p-6 text-[#f0eee6] sm:p-10">
+    <main className="min-h-screen bg-bg-primary p-6 text-text-primary sm:p-10">
       <h1 className="mb-2 text-2xl font-semibold tracking-tight">留言管理</h1>
-      <p className="mb-8 text-sm text-[#94a3b8]">
+      <p className="mb-8 text-sm text-text-secondary">
         共 {messages.length} 条留言
       </p>
 
       {loading ? (
-        <p className="text-sm text-[#5c5a52]">加载中...</p>
+        <p className="text-sm text-text-muted">加载中...</p>
       ) : messages.length === 0 ? (
-        <p className="text-sm text-[#5c5a52]">暂无留言</p>
+        <p className="text-sm text-text-muted">暂无留言</p>
       ) : (
         <div className="space-y-3">
           {messages.map((msg) => (
             <div
               key={msg.id}
-              className="rounded-xl border border-white/[0.06] bg-[#141414] p-5"
+              className="rounded-xl border border-white/[0.06] bg-bg-card p-5"
             >
               <div className="mb-1 flex items-center justify-between">
                 <span className="text-sm font-medium">{msg.name}</span>
-                <span className="text-xs text-[#5c5a52]">
+                <span className="text-xs text-text-muted">
                   {new Date(msg.created_at).toLocaleString("zh-CN")}
                 </span>
               </div>
-              <p className="text-sm leading-relaxed text-[#94a3b8]">
+              <p className="text-sm leading-relaxed text-text-secondary">
                 {msg.content}
               </p>
             </div>

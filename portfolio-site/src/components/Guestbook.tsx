@@ -4,10 +4,14 @@ import { useState } from "react";
 import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
-  "https://weyhuopnfwdryokojkva.supabase.co",
-  "sb_publishable_lm3y_VvHpRKVSFPLNojKPA_OSJuhgOO"
-);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error("Missing Supabase environment variables");
+}
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export default function Guestbook() {
   const [contact, setContact] = useState("");

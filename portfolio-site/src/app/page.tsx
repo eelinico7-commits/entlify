@@ -1,11 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
 import Hero from "@/components/Hero";
+import CyberPhilosopherPromo from "@/components/CyberPhilosopherPromo";
 import ImpactDashboard from "@/components/ImpactDashboard";
 import BentoGrid from "@/components/BentoGrid";
 import Guestbook from "@/components/Guestbook";
+import Footer from "@/components/Footer";
 
 const ParticleBackground = dynamic(
   () => import("@/components/ParticleBackground"),
@@ -29,6 +32,8 @@ export default function Home() {
         </section>
 
         {/* Data Impact Dashboard */}
+        <CyberPhilosopherPromo />
+
         <ImpactDashboard />
 
         {/* Bento Box Content Hub */}
@@ -43,14 +48,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="relative z-10 mt-32 border-t border-white/[0.03] py-12 text-center">
-        <p className="text-xs tracking-widest uppercase text-text-muted/30">
-          Built with Next.js · Three.js · Framer Motion
-        </p>
-        <p className="mt-3 text-xs text-text-muted/20">
-          &copy; {new Date().getFullYear()} Yang Cunbang. All rights reserved.
-        </p>
-      </footer>
+      <Footer />
     </main>
   );
 }
