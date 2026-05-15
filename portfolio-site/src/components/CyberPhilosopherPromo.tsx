@@ -6,7 +6,7 @@ import { smoothTransition } from "@/lib/animations";
 export default function CyberPhilosopherPromo() {
   return (
     <motion.a
-      href="/cyber-philosopher/index.html"
+      href="/cyber-philosopher"
       target="_blank"
       rel="noopener noreferrer"
       className="card-glow group relative mt-14 block overflow-hidden rounded-2xl border border-white/[0.06] bg-bg-card p-6 shadow-card transition-all duration-500 hover:scale-[1.01] hover:border-white/[0.12] sm:p-8"
