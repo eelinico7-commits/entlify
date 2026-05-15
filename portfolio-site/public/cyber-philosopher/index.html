@@ -597,6 +597,7 @@
     let messages = [];
     let replyIndex = 0;
     let exchangeCount = 0;
+    let conversationHistory = [];
 
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     //  VIEW NAVIGATION
@@ -614,6 +615,7 @@
       messages = [];
       replyIndex = 0;
       exchangeCount = 0;
+      conversationHistory = [];
 
       // Set top bar
       document.getElementById('chat-master-name').textContent = '正在与 ' + master.name + ' 对话';
@@ -690,7 +692,7 @@
       }, 50);
     }
 
-    function handleSend(e) {
+    async function handleSend(e) {
       e.preventDefault();
       const input = document.getElementById('chat-input');
       const text = input.value.trim();
@@ -698,26 +700,45 @@
 
       // Add user message
       addMessage(text, 'user');
-      messages.push({ role: 'user', text });
+      conversationHistory.push({ role: 'user', content: text });
       input.value = '';
       document.getElementById('send-btn').disabled = true;
 
       // Show typing indicator
       showTyping();
 
-      // Simulate AI response
-      setTimeout(() => {
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: text,
+            master: currentMaster.id,
+            history: conversationHistory.slice(0, -1),
+          }),
+        });
+
+        hideTyping();
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || `HTTP ${res.status}`);
+        }
+
+        const data = await res.json();
+        exchangeCount++;
+        addMessage(data.reply, 'ai');
+        conversationHistory.push({ role: 'assistant', content: data.reply });
+      } catch (err) {
         hideTyping();
         exchangeCount++;
-
-        const replies = currentMaster.replies;
-        const reply = replies[replyIndex % replies.length];
-        replyIndex++;
-
-        addMessage(reply, 'ai');
-        messages.push({ role: 'ai', text: reply });
+        const msg = err instanceof TypeError
+          ? '网络连接失败，请检查服务器是否运行。'
+          : err.message || '抱歉，我暂时无法回应。请稍后再试。';
+        addMessage(msg, 'ai');
+      } finally {
         document.getElementById('send-btn').disabled = false;
-      }, 1200 + Math.random() * 800);
+      }
     }
 
     // ── Typing indicator ──
