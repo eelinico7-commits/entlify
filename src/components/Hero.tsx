@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { smoothTransition } from "@/lib/animations";
+import { smoothTransition, smoothEasing } from "@/lib/animations";
 
 const containerVariants = {
   hidden: {},
@@ -18,7 +18,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: smoothTransition.ease as [number, number, number, number] },
+    transition: { duration: 0.7, ease: smoothEasing },
   },
 };
 
@@ -36,7 +36,7 @@ export default function Hero() {
           className="mb-4 font-mono text-[11px] tracking-[0.25em] text-accent-primary/70 uppercase"
           variants={itemVariants}
         >
-          Portfolio · 2025
+          Portfolio · 2026
         </motion.span>
 
         {/* Oversized title */}

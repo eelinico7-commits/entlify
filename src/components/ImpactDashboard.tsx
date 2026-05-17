@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { smoothTransition } from "@/lib/animations";
+import { smoothTransition, smoothEasing } from "@/lib/animations";
 
 const metrics = [
   { value: "1500+", label: "统筹管理高粘性技术社群人数", suffix: "" },
@@ -23,7 +23,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: smoothTransition.ease as [number, number, number, number] },
+    transition: { duration: 0.6, ease: smoothEasing },
   },
 };
 

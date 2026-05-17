@@ -1,18 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Card from "./Card";
 
 const sampleArticle = {
   title: "从医学生到 AI 开发者：我的跨界之路",
   excerpt:
     "一个预防医学学生如何走上 AIGC 开发之路？本文分享我的学习路径、工具栈与成长心得。",
-  date: "2025 年 4 月",
+  date: "2026 年 5 月",
   readTime: "5 min",
 };
 
 export default function CreatorHub() {
   return (
-    <div className="group flex h-full flex-col rounded-2xl border border-white/[0.06] bg-bg-card p-8 shadow-card transition-all duration-500 ease-in-out hover:scale-[1.01] hover:border-white/[0.12] hover:shadow-[0_0_80px_rgba(168,134,68,0.08)]">
+    <Card>
       {/* Title */}
       <div className="mb-4 flex items-center gap-3">
         <span className="text-xl">📝</span>
@@ -69,6 +70,6 @@ export default function CreatorHub() {
       <div className="mt-auto pt-5 text-center text-xs text-text-muted/40">
         持续更新中 · 敬请关注
       </div>
-    </div>
+    </Card>
   );
 }

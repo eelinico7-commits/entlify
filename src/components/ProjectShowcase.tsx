@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+import Card from "./Card";
 
 const projects = [
   {
@@ -52,7 +53,7 @@ const itemVariants = {
 
 export default function ProjectShowcase() {
   return (
-    <div className="group flex h-full flex-col rounded-2xl border border-white/[0.06] bg-bg-card p-6 shadow-card transition-all duration-500 ease-in-out hover:scale-[1.01] hover:border-white/[0.12] hover:shadow-[0_0_80px_rgba(168,134,68,0.08)] sm:p-8">
+    <Card className="p-6 sm:p-8">
       {/* Header */}
       <div className="mb-5 flex items-center gap-3">
         <span className="text-xl">💼</span>
@@ -120,6 +121,6 @@ export default function ProjectShowcase() {
       <div className="mt-4 border-t border-white/[0.04] pt-4 text-center text-xs text-text-muted/40">
         <span>更多项目持续开发中 · 敬请期待</span>
       </div>
-    </div>
+    </Card>
   );
 }

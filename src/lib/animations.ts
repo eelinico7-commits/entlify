@@ -1,9 +1,12 @@
 import { Variants, Transition } from "framer-motion";
 
+/* ---- Cubic bezier easing (exported as tuple so components don't need `as` cast) ---- */
+export const smoothEasing = [0.25, 0.1, 0.25, 1] as const;
+
 /* ---- Common transitions ---- */
 export const smoothTransition: Transition = {
   duration: 0.5,
-  ease: [0.25, 0.1, 0.25, 1],
+  ease: smoothEasing,
 };
 
 export const springTransition: Transition = {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 
@@ -13,10 +13,42 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+type Message = {
+  id: number;
+  name: string;
+  content: string;
+  created_at: string;
+};
+
+const timeAgo = (dateStr: string) => {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 60) return `${mins} 分钟前`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours} 小时前`;
+  const days = Math.floor(hours / 24);
+  if (days < 30) return `${days} 天前`;
+  return `${Math.floor(days / 30)} 个月前`;
+};
+
 export default function Guestbook() {
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  const fetchMessages = async () => {
+    const { data } = await supabase
+      .from("messages")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(8);
+    if (data) setMessages(data);
+  };
+
+  useEffect(() => {
+    fetchMessages();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,6 +68,7 @@ export default function Guestbook() {
     setSubmitted(true);
     setContact("");
     setMessage("");
+    fetchMessages();
     setTimeout(() => setSubmitted(false), 3000);
   };
 
@@ -177,6 +210,41 @@ export default function Guestbook() {
           </div>
         </div>
       </div>
+
+      {/* ============ RECENT MESSAGES ============ */}
+      {messages.length > 0 && (
+        <div className="mt-10">
+          <div className="mb-5 flex items-center gap-4">
+            <span className="h-px flex-1 bg-gradient-to-r from-accent-primary/20 to-transparent" />
+            <span className="text-[10px] tracking-[0.2em] uppercase text-text-muted/40">
+              最新留言 · {messages.length}
+            </span>
+            <span className="h-px flex-1 bg-gradient-to-l from-accent-primary/20 to-transparent" />
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className="message-item rounded-2xl border border-white/[0.04] bg-white/[0.02] px-5 py-4 transition-all duration-300 hover:border-white/[0.08] hover:bg-white/[0.04]"
+              >
+                <div className="mb-1 flex items-center justify-between">
+                  <span className="text-sm font-medium text-text-primary/80">
+                    {msg.name}
+                  </span>
+                  <span className="text-[10px] text-text-muted/30">
+                    {timeAgo(msg.created_at)}
+                  </span>
+                </div>
+                <p className="text-sm leading-relaxed text-text-secondary/60">
+                  {msg.content}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
     </section>
   );
 }

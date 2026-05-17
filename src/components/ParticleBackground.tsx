@@ -29,8 +29,8 @@ function ParticlesMesh() {
     const count = isMobile ? 500 : 2000;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
-    const colorA = new THREE.Color("#6c5ce7");
-    const colorB = new THREE.Color("#a29bfe");
+    const colorA = new THREE.Color("#a88644");
+    const colorB = new THREE.Color("#c9b578");
 
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
@@ -49,6 +49,9 @@ function ParticlesMesh() {
 
   useFrame(({ clock }) => {
     if (!pointsRef.current) return;
+
+    // Pause when tab is hidden (saves GPU/battery)
+    if (typeof document !== "undefined" && document.hidden) return;
 
     // Smooth mouse following with lerp
     currentMouseRef.current.x +=

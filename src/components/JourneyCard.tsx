@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { smoothTransition } from "@/lib/animations";
+import { smoothTransition, smoothEasing } from "@/lib/animations";
+import Card from "./Card";
 
 const timelineItems = [
   {
@@ -33,15 +34,13 @@ const itemVariants = {
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: smoothTransition.ease as [number, number, number, number] },
+    transition: { delay: i * 0.15, duration: 0.6, ease: smoothEasing },
   }),
 };
 
 export default function JourneyCard() {
   return (
-    <div
-      className="group flex h-full flex-col rounded-2xl border border-white/[0.06] bg-bg-card p-8 shadow-card transition-all duration-500 ease-in-out hover:scale-[1.01] hover:border-white/[0.12] hover:shadow-[0_0_80px_rgba(168,134,68,0.08)]"
-    >
+    <Card>
       {/* Timeline header */}
       <div className="mb-6 flex items-center gap-3">
         <span className="font-mono text-xs text-accent-primary/60">//</span>
@@ -115,6 +114,6 @@ export default function JourneyCard() {
       <div className="mt-6 border-t border-white/[0.04] pt-5 text-center text-xs text-text-muted/40">
         <span>从校园到领航 · 一直在路上</span>
       </div>
-    </div>
+    </Card>
   );
 }

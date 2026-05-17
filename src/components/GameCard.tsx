@@ -162,7 +162,7 @@ export default function GameCard() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(162, 155, 254, ${p.alpha})`;
+        ctx.fillStyle = `rgba(168, 134, 68, ${p.alpha})`;
         ctx.fill();
       }
 
