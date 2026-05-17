@@ -8,8 +8,6 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const ADMIN_PASSWORD = "admin123";
-
 type Message = {
   id: number;
   name: string;
@@ -37,9 +35,15 @@ export default function AdminPage() {
       });
   }, [authenticated]);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
+    const res = await fetch("/api/admin/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+    const { valid } = await res.json();
+    if (valid) {
       setAuthenticated(true);
       setPasswordError(false);
     } else {
