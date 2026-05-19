@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { smoothTransition, smoothEasing } from "@/lib/animations";
-import Card from "./Card";
+import { smoothEasing } from "@/lib/animations";
 
 interface SkillGroup {
   icon: string;
@@ -10,7 +9,7 @@ interface SkillGroup {
   skills: string[];
 }
 
-const skillGroups: SkillGroup[] = [
+const toolGroups: SkillGroup[] = [
   {
     icon: "🤖",
     title: "AIGC",
@@ -52,16 +51,16 @@ const itemVariants = {
 
 export default function SkillsCard() {
   return (
-    <Card>
-      {/* Title */}
+    <div className="flex h-full flex-col p-6 sm:p-8">
+      {/* Header */}
       <div className="mb-6 flex items-center gap-3">
         <span className="text-xl">🛠️</span>
         <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted">
-          核心技能 & 工具箱
+          工具栈
         </h3>
       </div>
 
-      {/* Skills grid */}
+      {/* Tools grid */}
       <motion.div
         className="grid grid-cols-2 gap-3"
         variants={containerVariants}
@@ -69,34 +68,39 @@ export default function SkillsCard() {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        {skillGroups.map((group) => (
+        {toolGroups.map((group) => (
           <motion.div
             key={group.title}
-            className="rounded-2xl bg-bg-secondary/40 p-4 transition-all duration-300 ease-in-out hover:bg-bg-secondary/70"
+            className="group relative overflow-hidden rounded-2xl bg-bg-secondary/40 p-4 transition-all duration-300 hover:bg-bg-secondary/70"
             variants={itemVariants}
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.03, y: -2 }}
           >
-            <div className="mb-2 flex items-center gap-1.5">
-              <span className="text-lg">{group.icon}</span>
-              <span className="text-sm font-semibold text-text-primary">
-                {group.title}
-              </span>
-            </div>
+            {/* Decorative dot */}
+            <div className="absolute -right-4 -top-4 h-8 w-8 rounded-full bg-accent-primary/[0.03] blur-lg transition-all duration-500 group-hover:bg-accent-primary/[0.06]" />
 
-            <ul className="space-y-1">
-              {group.skills.map((skill) => (
-                <li
-                  key={skill}
-                  className="flex items-center gap-1.5 text-xs text-text-secondary"
-                >
-                  <span className="inline-block h-1 w-1 rounded-full bg-accent-primary/50" />
-                  {skill}
-                </li>
-              ))}
-            </ul>
+            <div className="relative">
+              <div className="mb-2 flex items-center gap-1.5">
+                <span className="text-lg">{group.icon}</span>
+                <span className="text-sm font-semibold text-text-primary">
+                  {group.title}
+                </span>
+              </div>
+
+              <ul className="space-y-1">
+                {group.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="flex items-center gap-1.5 text-xs text-text-secondary"
+                  >
+                    <span className="inline-block h-1 w-1 rounded-full bg-accent-primary/50" />
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         ))}
       </motion.div>
-    </Card>
+    </div>
   );
 }

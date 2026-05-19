@@ -1,16 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { smoothTransition, smoothEasing } from "@/lib/animations";
-import Card from "./Card";
+import { smoothEasing } from "@/lib/animations";
 
 const timelineItems = [
   {
     period: "2025 – 2030",
     title: "预防医学 · 本科",
-    subtitle: "河南中医药大学",
+    subtitle: "医学生身份出发，系统学习预防医学、流行病学与卫生统计",
     description:
-      "系统学习预防医学、流行病学与卫生统计，同时自主探索 AI 与编程，开启跨学科成长之路。",
+      "在校期间同时自主探索 AI 与编程，将医学数据分析思维与技术能力交叉融合，开启跨学科成长之路。",
   },
 ];
 
@@ -19,13 +18,13 @@ const methodologies = [
     icon: "🔄",
     title: "自媒体与商业闭环",
     description:
-      `在全国5000+大学生的”浪尖儿社群”中深造自媒体、AI与销售。打通了”技术赋能-内容引流-私域转化”的核心闭环，实现双线增长。`,
+      `在浪尖儿社群中深耕自媒体、AI与销售，打通"技术赋能-内容引流-私域转化"的闭环，实现双线增长。`,
   },
   {
     icon: "⚡",
     title: "AIGC全栈开发落地",
     description:
-      "完全基于Prompt工程使用Claude Code替代传统手写开发，独立产出高审美简历网站与交互式飞机大战小游戏。",
+      "基于 Prompt 工程使用 Claude Code 替代传统手写开发，独立产出高审美简历网站与交互式飞机大战小游戏。",
   },
 ];
 
@@ -40,8 +39,8 @@ const itemVariants = {
 
 export default function JourneyCard() {
   return (
-    <Card>
-      {/* Timeline header */}
+    <div className="flex h-full flex-col p-6 sm:p-8">
+      {/* Terminal-style header */}
       <div className="mb-6 flex items-center gap-3">
         <span className="font-mono text-xs text-accent-primary/60">//</span>
         <h3 className="font-mono text-[11px] tracking-widest uppercase text-text-muted/50">
@@ -69,9 +68,9 @@ export default function JourneyCard() {
                 {item.period}
               </span>
               <h4 className="mt-1 text-xl font-semibold tracking-tight text-text-primary">
-                {item.subtitle}
+                {item.title}
               </h4>
-              <p className="mt-0.5 text-sm text-accent-warm/80">{item.title}</p>
+              <p className="mt-0.5 text-sm text-accent-warm/80">{item.subtitle}</p>
               <p className="mt-3 text-sm leading-relaxed text-text-secondary/70">
                 {item.description}
               </p>
@@ -89,12 +88,12 @@ export default function JourneyCard() {
           {methodologies.map((m, i) => (
             <motion.div
               key={m.title}
-              className="rounded-2xl bg-bg-secondary/40 p-5 transition-all duration-300 ease-in-out hover:border hover:border-white/[0.06] hover:bg-bg-secondary/70"
+              className="rounded-2xl bg-bg-secondary/40 p-5 transition-all duration-300 hover:border hover:border-white/[0.06] hover:bg-bg-secondary/70"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              whileHover={{ scale: 1.01 }}
+              whileHover={{ scale: 1.01, y: -2 }}
             >
               <div className="mb-2 flex items-center gap-2">
                 <span className="text-base">{m.icon}</span>
@@ -114,6 +113,6 @@ export default function JourneyCard() {
       <div className="mt-6 border-t border-white/[0.04] pt-5 text-center text-xs text-text-muted/40">
         <span>从校园到领航 · 一直在路上</span>
       </div>
-    </Card>
+    </div>
   );
 }

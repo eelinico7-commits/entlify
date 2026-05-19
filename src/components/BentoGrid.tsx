@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { scrollReveal, scrollStagger } from "@/lib/animations";
+import { scrollReveal } from "@/lib/animations";
 import JourneyCard from "./JourneyCard";
 import RoleCards from "./RoleCards";
 import SkillsCard from "./SkillsCard";
@@ -24,7 +24,6 @@ const gridItem = {
   },
 };
 
-/* ── Section animation ── */
 const sectionVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -37,7 +36,7 @@ export default function BentoGrid() {
   return (
     <>
       {/* ========================================
-          FEATURED PROJECT
+          FEATURED PROJECT — 主推大卡片
           ======================================== */}
       <motion.div
         id="projects"
@@ -53,17 +52,17 @@ export default function BentoGrid() {
           subtitle="当前重点打造的项目，融合 AI 与医学人文视角"
         />
 
-        {/* Hero-style project card — 赛博先哲 */}
+        {/* 赛博先哲 — 主推大卡片 */}
         <CyberPhilosopherPromo />
 
-        {/* Featured project detail — personal website */}
+        {/* 其他项目 — Bento 网格 */}
         <div className="card-glow mt-6 rounded-2xl">
           <ProjectShowcase />
         </div>
       </motion.div>
 
       {/* ========================================
-          JOURNEY TIMELINE
+          JOURNEY TIMELINE — 经历轨迹
           ======================================== */}
       <motion.div
         id="journey"
@@ -85,7 +84,7 @@ export default function BentoGrid() {
       </motion.div>
 
       {/* ========================================
-          CAPABILITY SYSTEM
+          CAPABILITY SYSTEM — 能力系统 + 工具栈
           ======================================== */}
       <motion.section
         id="capability"
@@ -97,7 +96,7 @@ export default function BentoGrid() {
       >
         <SectionHeading
           number="04"
-          title="能力系统"
+          title="能力系统 & 工具栈"
           subtitle="跨学科能力矩阵 —— 从商业运营到技术落地"
         />
 
@@ -105,7 +104,7 @@ export default function BentoGrid() {
           className="grid grid-cols-1 gap-6 lg:grid-cols-3"
           variants={sectionVariants}
         >
-          {/* Core advantages — spans 2 cols */}
+          {/* 能力系统 — 2 cols */}
           <motion.div
             variants={gridItem}
             className="card-glow rounded-2xl lg:col-span-2"
@@ -113,7 +112,7 @@ export default function BentoGrid() {
             <RoleCards />
           </motion.div>
 
-          {/* Skills — 1 col */}
+          {/* 工具栈 — 1 col */}
           <motion.div variants={gridItem} className="card-glow rounded-2xl">
             <SkillsCard />
           </motion.div>
@@ -121,7 +120,7 @@ export default function BentoGrid() {
       </motion.section>
 
       {/* ========================================
-          BLOG / NOTES
+          BLOG — 破局日记 + 极客精神
           ======================================== */}
       <motion.section
         id="blog"
@@ -138,26 +137,29 @@ export default function BentoGrid() {
         />
 
         <motion.div
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-6 lg:grid-cols-3"
           variants={sectionVariants}
         >
-          {/* 破局日记 main */}
+          {/* 日记主区域 — 3 篇文章 */}
           <motion.div
             variants={gridItem}
-            className="card-glow rounded-2xl md:col-span-2"
+            className="card-glow rounded-2xl lg:col-span-2"
           >
             <CreatorHub />
           </motion.div>
 
           {/* 极客精神 */}
-          <motion.div variants={gridItem} className="card-glow rounded-2xl">
+          <motion.div
+            variants={gridItem}
+            className="card-glow rounded-2xl"
+          >
             <InterestsCard />
           </motion.div>
 
-          {/* 飞机大战游戏 */}
+          {/* 飞机大战 */}
           <motion.div
             variants={gridItem}
-            className="card-glow rounded-2xl md:col-span-2 lg:col-span-1"
+            className="card-glow rounded-2xl lg:col-span-1"
           >
             <GameCard />
           </motion.div>

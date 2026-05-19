@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { heroContainer, heroItem, easeOutExpo } from "@/lib/animations";
+import { heroContainer, heroItem } from "@/lib/animations";
 
 export default function Hero() {
   return (
@@ -47,10 +47,10 @@ export default function Hero() {
           variants={heroItem}
         >
           {[
-            "医学生在读",
-            "AI工作流探索",
-            "AIGC项目实践",
-            "内容增长实验",
+            "医学生",
+            "AI成长型创作者",
+            "AIGC实践者",
+            "内容增长探索者",
           ].map((tag) => (
             <span
               key={tag}

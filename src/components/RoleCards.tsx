@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { smoothTransition, smoothEasing } from "@/lib/animations";
-import Card from "./Card";
+import { smoothEasing } from "@/lib/animations";
 
-const advantages = [
+const capabilities = [
   {
     index: "01",
     title: "商业社群统筹",
@@ -29,7 +28,7 @@ const advantages = [
     emoji: "🔄",
     subtitle: "破局日记 · 主理人",
     description:
-      `在全国5000+大学生的”浪尖儿社群”中深造自媒体、AI与销售。打通了”技术赋能-内容引流-私域转化”的核心闭环，实现双线增长。`,
+      '在浪尖儿社群中深耕自媒体、AI与销售，打通「技术赋能-内容引流-私域转化」的核心闭环，实现双线增长。',
     tags: ["自媒体运营", "内容引流", "私域转化", "双线增长"],
   },
   {
@@ -38,7 +37,7 @@ const advantages = [
     emoji: "⚡",
     subtitle: "独立开发者",
     description:
-      "完全基于Prompt工程使用Claude Code替代传统手写开发，独立产出高审美简历网站与交互式飞机大战小游戏。",
+      "基于 Prompt 工程使用 Claude Code 替代传统手写开发，独立产出高审美简历网站与交互式飞机大战小游戏。",
     tags: ["Claude Code", "DeepSeek API", "Gemini", "Obsidian", "智能体开发"],
   },
 ];
@@ -62,12 +61,12 @@ const itemVariants = {
 
 export default function RoleCards() {
   return (
-    <Card>
-      {/* Terminal-style header */}
+    <div className="flex h-full flex-col p-6 sm:p-8">
+      {/* Header */}
       <div className="mb-6 flex items-center gap-3">
-        <span className="font-mono text-xs text-accent-primary/60">//</span>
-        <h3 className="font-mono text-[11px] tracking-widest uppercase text-text-muted/50">
-          核心优势 & 工具箱
+        <span className="text-xl">⚡</span>
+        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted">
+          能力系统
         </h3>
         <div className="ml-2 h-px flex-1 bg-white/[0.04]" />
       </div>
@@ -79,45 +78,50 @@ export default function RoleCards() {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        {advantages.map((adv) => (
+        {capabilities.map((cap) => (
           <motion.div
-            key={adv.index}
-            className="group rounded-2xl bg-bg-secondary/40 p-5 transition-all duration-300 ease-in-out hover:border hover:border-white/[0.08] hover:bg-bg-secondary/70"
+            key={cap.index}
+            className="group relative overflow-hidden rounded-2xl bg-bg-secondary/40 p-5 transition-all duration-300 hover:border hover:border-white/[0.08] hover:bg-bg-secondary/70"
             variants={itemVariants}
             whileHover={{ y: -3, scale: 1.01 }}
           >
-            {/* Engineering index */}
-            <div className="mb-3 flex items-start justify-between">
-              <span className="font-mono text-[10px] tracking-widest text-accent-primary/40">
-                {adv.index} // {adv.title}
-              </span>
-              <span className="text-lg">{adv.emoji}</span>
-            </div>
+            {/* Decorative corner */}
+            <div className="absolute -right-6 -top-6 h-12 w-12 rounded-full bg-accent-primary/[0.04] blur-xl transition-all duration-500 group-hover:bg-accent-primary/[0.08]" />
 
-            {/* Subtitle */}
-            <p className="mb-2 text-xs font-medium text-accent-primary/70">
-              {adv.subtitle}
-            </p>
-
-            {/* Description */}
-            <p className="mb-4 text-sm leading-relaxed text-text-secondary/80">
-              {adv.description}
-            </p>
-
-            {/* Tech stack badges */}
-            <div className="mt-auto flex flex-wrap gap-1.5">
-              {adv.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] text-text-muted transition-colors duration-200 group-hover:border-accent-primary/20 group-hover:text-accent-primary/60"
-                >
-                  {tag}
+            <div className="relative">
+              {/* Index + title */}
+              <div className="mb-3 flex items-start justify-between">
+                <span className="font-mono text-[10px] tracking-widest text-accent-primary/40">
+                  {cap.index} // {cap.title}
                 </span>
-              ))}
+                <span className="text-lg">{cap.emoji}</span>
+              </div>
+
+              {/* Subtitle */}
+              <p className="mb-2 text-xs font-medium text-accent-primary/70">
+                {cap.subtitle}
+              </p>
+
+              {/* Description */}
+              <p className="mb-4 text-sm leading-relaxed text-text-secondary/80">
+                {cap.description}
+              </p>
+
+              {/* Tags */}
+              <div className="mt-auto flex flex-wrap gap-1.5">
+                {cap.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] text-text-muted transition-colors duration-200 group-hover:border-accent-primary/20 group-hover:text-accent-primary/60"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.div>
         ))}
       </motion.div>
-    </Card>
+    </div>
   );
 }
