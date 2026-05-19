@@ -1,73 +1,108 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { smoothTransition, smoothEasing } from "@/lib/animations";
+import { scrollReveal, scrollStagger } from "@/lib/animations";
+import CountUp from "./CountUp";
 
-const metrics = [
-  { value: "1500+", label: "统筹管理高粘性技术社群人数", suffix: "" },
-  { value: "13", label: "成功辐射高校版图", suffix: "所" },
-  { value: "5.3W+", label: "抖音校园IP累计播放量", suffix: "" },
-  { value: "12%", label: "硬件销售转化率 (远超行业8%)", suffix: "" },
+interface MetricItem {
+  value: string;
+  numeric: number;
+  suffix: string;
+  label: string;
+}
+
+const metrics: MetricItem[] = [
+  { value: "1500+", numeric: 1500, suffix: "+", label: "社群人数" },
+  { value: "13", numeric: 13, suffix: "所", label: "辐射高校" },
+  { value: "5.3W+", numeric: 5.3, suffix: "W+", label: "内容播放" },
+  { value: "12%", numeric: 12, suffix: "%", label: "销售转化" },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
-  },
-};
-
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: smoothEasing },
-  },
+    scale: 1,
+    transition: { delay: i * 0.12, duration: 0.6, ease: [0.19, 1, 0.22, 1] as [number, number, number, number] },
+  }),
 };
 
 export default function ImpactDashboard() {
   return (
     <motion.section
-      className="mb-20 mt-10"
-      variants={containerVariants}
+      id="metrics"
+      className="relative mx-auto mb-24 mt-10 max-w-5xl px-6 sm:px-10"
+      variants={scrollReveal}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
     >
-      {/* Terminal-style section header */}
-      <motion.div
-        className="mb-6 flex items-center gap-3"
-        variants={itemVariants}
-      >
-        <span className="font-mono text-xs text-accent-primary/60">//</span>
-        <span className="font-mono text-[11px] tracking-widest uppercase text-text-muted/50">
-          数据看板 · 影响力指标
+      {/* Section label */}
+      <div className="mb-8 flex items-center gap-3">
+        <span className="font-mono text-[10px] tracking-[0.25em] text-accent-primary/50 uppercase">
+          / 01
         </span>
-        <div className="ml-2 h-px flex-1 bg-white/[0.04]" />
-      </motion.div>
+        <div className="h-px flex-1 bg-gradient-to-r from-accent-primary/20 to-transparent" />
+      </div>
 
-      {/* Metrics grid */}
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {metrics.map((m) => (
+      {/* Metrics bar */}
+      <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+        {/* Background glow */}
+        <div className="pointer-events-none absolute inset-0 rounded-3xl bg-accent-green/[0.02] blur-3xl" />
+
+        {metrics.map((m, i) => (
           <motion.div
-            key={m.value}
-            className="group rounded-2xl border border-white/[0.06] bg-bg-card p-6 shadow-card transition-all duration-500 ease-in-out hover:scale-[1.02] hover:border-white/[0.12] hover:shadow-[0_0_80px_rgba(168,134,68,0.08)]"
+            key={m.label}
+            className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-bg-card/80 p-5 shadow-card backdrop-blur-sm transition-all duration-500 hover:border-white/[0.12] hover:shadow-[0_0_60px_rgba(168,134,68,0.06)] sm:p-6"
+            custom={i}
             variants={itemVariants}
-            whileHover={{ y: -4 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            whileHover={{ y: -3 }}
           >
-            <p className="font-mono text-4xl font-black tracking-tight text-white/90 sm:text-5xl">
-              {m.value}
-              {m.suffix && (
-                <span className="ml-0.5 text-2xl font-light text-accent-primary/60">
-                  {m.suffix}
-                </span>
-              )}
-            </p>
-            <p className="mt-2 text-xs leading-relaxed text-text-secondary/70 sm:text-sm">
-              {m.label}
-            </p>
+            {/* Decorative corner accent */}
+            <div
+              className={`absolute -right-6 -top-6 h-12 w-12 rounded-full blur-xl transition-all duration-500 group-hover:opacity-80 ${
+                i === 0
+                  ? "bg-accent-green/20"
+                  : i === 1
+                    ? "bg-accent-primary/20"
+                    : i === 2
+                      ? "bg-accent-blue/20"
+                      : "bg-accent-warm/20"
+              }`}
+            />
+
+            <div className="relative">
+              {/* Value with count-up */}
+              <p className="font-mono text-2xl font-black tracking-tight text-white/90 sm:text-3xl md:text-4xl">
+                {m.suffix === "%" || m.suffix === "W+" ? (
+                  <>
+                    <CountUp end={m.numeric} decimals={m.suffix === "W+" ? 1 : 0} />
+                    {m.suffix}
+                  </>
+                ) : m.suffix === "+" ? (
+                  <>
+                    <CountUp end={m.numeric} />
+                    +
+                  </>
+                ) : (
+                  <>
+                    <CountUp end={m.numeric} />
+                    <span className="ml-0.5 text-lg font-light text-accent-primary/60 sm:text-2xl">
+                      {m.suffix}
+                    </span>
+                  </>
+                )}
+              </p>
+
+              {/* Label */}
+              <p className="mt-1.5 text-xs text-text-secondary/60 sm:text-sm">
+                {m.label}
+              </p>
+            </div>
           </motion.div>
         ))}
       </div>

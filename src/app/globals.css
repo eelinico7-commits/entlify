@@ -16,6 +16,13 @@
   --accent-glow: rgba(168, 134, 68, 0.12);
   --accent-warm: #c4946a;
   --accent-gold: #a88644;
+
+  /* New accent colors */
+  --accent-green: #7d9e6b;
+  --accent-green-glow: rgba(125, 158, 107, 0.12);
+  --accent-blue: #6b8fc4;
+  --accent-blue-glow: rgba(107, 143, 196, 0.12);
+
   --border-color: rgba(255, 255, 255, 0.05);
   --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.4);
   --shadow-card-hover: 0 12px 56px rgba(0, 0, 0, 0.5);
@@ -35,6 +42,8 @@
   --color-accent-secondary: var(--accent-secondary);
   --color-accent-warm: var(--accent-warm);
   --color-accent-gold: var(--accent-gold);
+  --color-accent-green: var(--accent-green);
+  --color-accent-blue: var(--accent-blue);
   --color-border-color: var(--border-color);
   --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.4);
   --shadow-card-hover: 0 12px 56px rgba(0, 0, 0, 0.5);
@@ -62,7 +71,7 @@ body::before {
   inset: 0;
   background:
     radial-gradient(ellipse 80% 60% at 20% 20%, rgba(168, 134, 68, 0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(168, 134, 68, 0.03) 0%, transparent 50%);
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(107, 143, 196, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -96,7 +105,14 @@ body::before {
   border: 1px solid var(--border-color);
 }
 
-/* ---- Utility: text gradient (warm gold) ---- */
+@utility glass-strong {
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ---- Utility: text gradients ---- */
 @utility text-gradient {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   -webkit-background-clip: text;
@@ -111,7 +127,21 @@ body::before {
   background-clip: text;
 }
 
-/* ---- Utility: oversized section heading ---- */
+@utility text-gradient-green {
+  background: linear-gradient(135deg, var(--accent-green), #a8c99b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility text-gradient-blue {
+  background: linear-gradient(135deg, var(--accent-blue), #9bb9e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Section heading utilities ---- */
 @utility section-heading {
   font-size: clamp(3rem, 8vw, 7rem);
   font-weight: 700;
@@ -129,6 +159,15 @@ body::before {
   opacity: 0.4;
 }
 
+/* ---- Section number (e.g. /01) ---- */
+@utility section-number {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--accent-primary);
+  opacity: 0.6;
+}
+
 /* ---- Animations ---- */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -136,6 +175,14 @@ body::before {
 }
 @utility animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+@utility animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
 /* ---- Card gold border glow (flowing light effect) ---- */
@@ -181,6 +228,28 @@ body::before {
     mask-composite: exclude;
     padding: 1px;
     pointer-events: none;
+  }
+}
+
+/* ---- Section divider ---- */
+@utility section-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  &::before {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(168, 134, 68, 0.3));
+  }
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(168, 134, 68, 0.3), transparent);
   }
 }
 

@@ -1,18 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useScrollProgress } from "@/lib/useScrollProgress";
 
 const navItems = [
   { label: "首页", href: "#hero" },
-  { label: "经历", href: "#experience" },
-  { label: "优势", href: "#advantages" },
-  { label: "技能", href: "#skills" },
+  { label: "数据", href: "#metrics" },
+  { label: "项目", href: "#projects" },
+  { label: "经历", href: "#journey" },
+  { label: "能力", href: "#capability" },
+  { label: "联系", href: "#contact" },
 ];
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
-  const scrollProgress = useScrollProgress();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -24,16 +24,10 @@ export default function NavBar() {
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-white/[0.05] bg-black/50 shadow-[0_4px_30px_rgba(0,0,0,0.3)] backdrop-blur-2xl"
+          ? "border-b border-white/[0.05] bg-black/60 shadow-[0_4px_30px_rgba(0,0,0,0.3)] backdrop-blur-2xl"
           : "bg-transparent"
       }`}
     >
-      {/* Scroll progress bar */}
-      <div
-        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-accent-primary/60 to-accent-secondary/60 transition-opacity duration-300"
-        style={{ width: `${scrollProgress * 100}%`, opacity: scrollProgress > 0 ? 1 : 0 }}
-      />
-
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
         <a
           href="#hero"
@@ -41,12 +35,12 @@ export default function NavBar() {
         >
           杨存邦
         </a>
-        <ul className="flex items-center gap-6 sm:gap-10">
+        <ul className="flex items-center gap-5 sm:gap-8">
           {navItems.map((item) => (
             <li key={item.href}>
               <a
                 href={item.href}
-                className="font-mono text-[10px] tracking-[0.15em] text-text-muted transition-colors duration-300 hover:text-accent-primary uppercase"
+                className="font-mono text-[9px] tracking-[0.15em] text-text-muted transition-colors duration-300 hover:text-accent-primary uppercase sm:text-[10px]"
               >
                 {item.label}
               </a>
