@@ -133,7 +133,7 @@ export default function BentoGrid() {
         <SectionHeading
           number="05"
           title="破局日记"
-          subtitle="记录每一次跨界思考和破局时刻"
+          subtitle="记录一个大学生用 AI、内容和项目实践升级自己的过程。"
         />
 
         <motion.div

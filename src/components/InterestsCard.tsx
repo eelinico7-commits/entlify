@@ -1,26 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { staggerContainer, smoothTransition, smoothEasing } from "@/lib/animations";
+import { staggerContainer, smoothEasing } from "@/lib/animations";
 import Card from "./Card";
 
-const interests = [
+const categories = [
   {
-    icon: "🖥️",
-    title: "硬件 DIY",
-    description: "装机、超频、硬件调试，享受亲手打造的性能跃升。",
+    icon: "🤖",
+    title: "AI 工具实战",
+    description: "AI 工具使用技巧、AI 工作流搭建、AI 项目实践经验分享。",
     gradient: "from-accent-primary/[0.08] to-accent-secondary/[0.04]",
   },
   {
-    icon: "🎮",
-    title: "竞技游戏",
-    description: "策略规划与即时反应，在竞技中磨练决策力。",
+    icon: "🌱",
+    title: "学生成长路径",
+    description: "高考后、准大一、大学生活、信息差和成长选择，记录每一步破局。",
     gradient: "from-accent-warm/[0.08] to-accent-gold/[0.04]",
   },
   {
-    icon: "🤖",
-    title: "AI 编码边界",
-    description: "探索 AI 辅助编程的极限，用工具解放创造力。",
+    icon: "⚡",
+    title: "项目实践复盘",
+    description: "从零到一的项目经验复盘，技术选型、卡点解决与交付思考。",
     gradient: "from-accent-gold/[0.08] to-accent-primary/[0.04]",
   },
 ];
@@ -47,13 +47,13 @@ export default function InterestsCard() {
     <Card>
       {/* Title */}
       <div className="mb-6 flex items-center gap-3">
-        <span className="text-xl">⚡</span>
+        <span className="text-xl">📂</span>
         <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted">
-          极客精神
+          内容分类
         </h3>
       </div>
 
-      {/* Interest items */}
+      {/* Category items */}
       <motion.div
         className="flex flex-1 flex-col gap-3"
         variants={containerVariants}
@@ -61,7 +61,7 @@ export default function InterestsCard() {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        {interests.map((item) => (
+        {categories.map((item) => (
           <motion.div
             key={item.title}
             className={`group/item relative overflow-hidden rounded-2xl bg-gradient-to-br ${item.gradient} p-4 transition-all duration-300 ease-in-out hover:bg-bg-secondary/60`}
@@ -88,7 +88,7 @@ export default function InterestsCard() {
 
       {/* Footer */}
       <div className="mt-5 border-t border-white/[0.04] pt-4 text-center text-xs text-text-muted/40">
-        <span className="text-gradient-warm">Keep exploring, keep breaking limits</span>
+        <span className="text-gradient-warm">从 AI 到成长，记录每一次破局</span>
       </div>
     </Card>
   );
