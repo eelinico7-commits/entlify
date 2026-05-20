@@ -77,6 +77,34 @@ export default function Hero() {
           </a>
         </motion.div>
 
+        {/* Social Presence */}
+        <motion.div
+          className="mt-14 flex flex-col items-center gap-4"
+          variants={heroItem}
+        >
+          <span className="text-[9px] tracking-[0.25em] text-text-muted/30 uppercase">
+            Social Presence
+          </span>
+          <div className="grid grid-cols-2 gap-2.5">
+            {[
+              { label: "Personal · 小红书", href: "https://www.xiaohongshu.com/user/profile/5f28f8e00000000001009073" },
+              { label: "Personal · 抖音", href: "https://v.douyin.com/5wuLdsXZs24/" },
+              { label: "AI Lab · 小红书", href: "https://xhslink.com/m/7G3CNeXCu3W" },
+              { label: "AI Lab · 抖音", href: "https://v.douyin.com/Vs4peyUk8sw/" },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-2 text-[11px] text-text-muted/70 transition-all duration-300 hover:border-accent-primary/30 hover:text-accent-primary/80 hover:shadow-[0_0_20px_rgba(168,134,68,0.12)]"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Scroll indicator */}
         <motion.div
           className="absolute bottom-10 left-1/2 -translate-x-1/2"
