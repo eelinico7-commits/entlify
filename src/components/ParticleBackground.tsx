@@ -77,7 +77,7 @@ function ParticlesMesh() {
         size={0.05}
         vertexColors
         transparent
-        opacity={0.8}
+        opacity={0.35}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}

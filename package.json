@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/sync-obsidian.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:obsidian": "node scripts/sync-obsidian.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
@@ -14,10 +16,13 @@
     "@supabase/supabase-js": "^2.105.4",
     "@types/three": "^0.184.1",
     "framer-motion": "^12.38.0",
+    "gray-matter": "^4.0.3",
     "next": "16.2.6",
     "openai": "^6.37.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
     "three": "^0.184.0"
   },
   "devDependencies": {

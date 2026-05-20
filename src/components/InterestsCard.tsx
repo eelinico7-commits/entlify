@@ -18,6 +18,12 @@ const categories = [
     gradient: "from-accent-warm/[0.08] to-accent-gold/[0.04]",
   },
   {
+    icon: "🎯",
+    title: "个人IP定位",
+    description: "AI 自媒体号与高三/准大一号的双线定位，个人品牌建设思考。",
+    gradient: "from-accent-blue/[0.08] to-accent-primary/[0.04]",
+  },
+  {
     icon: "⚡",
     title: "项目实践复盘",
     description: "从零到一的项目经验复盘，技术选型、卡点解决与交付思考。",
@@ -49,7 +55,7 @@ export default function InterestsCard() {
       <div className="mb-6 flex items-center gap-3">
         <span className="text-xl">📂</span>
         <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted">
-          内容分类
+          内容坐标
         </h3>
       </div>
 

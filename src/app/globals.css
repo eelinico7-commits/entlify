@@ -295,3 +295,124 @@ body::before {
 .btn-shine:hover::after {
   transform: translateX(100%);
 }
+
+/* =========================================================
+   Markdown 内容样式（破局日记详情页）
+   ========================================================= */
+.prose-config {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}
+
+.prose-config h1,
+.prose-config h2,
+.prose-config h3,
+.prose-config h4 {
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+}
+
+.prose-config h1 { font-size: 1.5rem; }
+.prose-config h2 { font-size: 1.25rem; }
+.prose-config h3 { font-size: 1.125rem; }
+
+.prose-config p {
+  margin-bottom: 1em;
+}
+
+.prose-config a {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+}
+.prose-config a:hover {
+  opacity: 0.8;
+}
+
+.prose-config strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.prose-config ul,
+.prose-config ol {
+  margin: 0.75em 0;
+  padding-left: 1.5em;
+}
+
+.prose-config li {
+  margin-bottom: 0.35em;
+}
+
+.prose-config blockquote {
+  border-left: 2px solid var(--accent-primary);
+  padding-left: 1em;
+  margin: 1em 0;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.prose-config code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  color: var(--accent-secondary);
+}
+
+.prose-config pre {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 1em 1.25em;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.prose-config pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+.prose-config table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.875rem;
+}
+
+.prose-config th,
+.prose-config td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.6em 0.8em;
+  text-align: left;
+}
+
+.prose-config th {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.prose-config td {
+  color: var(--text-secondary);
+}
+
+.prose-config hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 2em 0;
+}
+
+.prose-config img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1em 0;
+}
