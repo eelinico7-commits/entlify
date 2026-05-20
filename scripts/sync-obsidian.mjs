@@ -93,8 +93,7 @@ if (!existsSync(outDir)) {
 
 if (!existsSync(OBSIDIAN_PATH)) {
   console.warn(`⚠ Obsidian path not found: ${OBSIDIAN_PATH}`);
-  console.warn("  Creating empty notes.json. Run this script on your local machine to sync.");
-  writeFileSync(join(process.cwd(), OUTPUT_PATH), JSON.stringify([], null, 2), "utf-8");
+  console.warn("  Skipping sync — keeping existing notes.json for Vercel build.");
   process.exit(0);
 }
 
