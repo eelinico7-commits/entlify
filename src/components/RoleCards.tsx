@@ -92,7 +92,7 @@ export default function RoleCards() {
               {/* Index + title */}
               <div className="mb-3 flex items-start justify-between">
                 <span className="font-mono text-[10px] tracking-widest text-accent-primary/40">
-                  {cap.index} // {cap.title}
+                  {cap.index} {"//"} {cap.title}
                 </span>
                 <span className="text-lg">{cap.emoji}</span>
               </div>

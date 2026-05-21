@@ -32,30 +32,46 @@ const timeAgo = (dateStr: string) => {
 };
 
 export default function Guestbook() {
-  const [contact, setContact] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const fetchMessages = async () => {
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadMessages = async () => {
+      const { data } = await supabase
+        .from("messages")
+        .select("id,name,content,created_at")
+        .order("created_at", { ascending: false })
+        .limit(8);
+
+      if (!cancelled && data) setMessages(data);
+    };
+
+    void loadMessages();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const refreshMessages = async () => {
     const { data } = await supabase
       .from("messages")
-      .select("*")
+      .select("id,name,content,created_at")
       .order("created_at", { ascending: false })
       .limit(8);
     if (data) setMessages(data);
   };
 
-  useEffect(() => {
-    fetchMessages();
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!contact.trim() || !message.trim()) return;
+    if (!displayName.trim() || !message.trim()) return;
 
     const { error } = await supabase.from("messages").insert({
-      name: contact.trim(),
+      name: displayName.trim(),
       content: message.trim(),
     });
 
@@ -66,10 +82,15 @@ export default function Guestbook() {
     }
 
     setSubmitted(true);
-    setContact("");
+    setDisplayName("");
     setMessage("");
-    fetchMessages();
+    refreshMessages();
     setTimeout(() => setSubmitted(false), 3000);
+  };
+
+  const getPublicName = (name: string) => {
+    const maybePrivateContact = /@|邮箱|微信|vx|phone|tel|\d{6,}/i.test(name);
+    return maybePrivateContact ? "一位访客" : name;
   };
 
   return (
@@ -97,22 +118,25 @@ export default function Guestbook() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-            {/* 联系方式 */}
+            {/* 公开昵称 */}
             <div>
               <label
-                htmlFor="contact"
+                htmlFor="display-name"
                 className="mb-2 block text-xs font-medium tracking-wide text-[var(--text-secondary)]"
               >
-                你的微信 / 联系方式
+                公开昵称
               </label>
               <input
-                id="contact"
+                id="display-name"
                 type="text"
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-                placeholder="@username 或手机号 / 邮箱"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                placeholder="怎么称呼你"
                 className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-300 focus:border-accent-primary/50 focus:bg-white/[0.05] focus:shadow-[0_0_0_3px_var(--accent-glow)]"
               />
+              <p className="mt-2 text-xs leading-relaxed text-[var(--text-muted)]">
+                这里会公开展示；联系方式建议通过右侧微信二维码私聊。
+              </p>
             </div>
 
             {/* 留言内容 */}
@@ -230,7 +254,7 @@ export default function Guestbook() {
               >
                 <div className="mb-1 flex items-center justify-between">
                   <span className="text-sm font-medium text-text-primary/80">
-                    {msg.name}
+                    {getPublicName(msg.name)}
                   </span>
                   <span className="text-[10px] text-text-muted/30">
                     {timeAgo(msg.created_at)}

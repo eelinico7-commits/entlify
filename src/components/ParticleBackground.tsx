@@ -5,6 +5,11 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
+const seededRandom = (seed: number) => {
+  const value = Math.sin(seed * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+};
+
 function ParticlesMesh() {
   const pointsRef = useRef<THREE.Points>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -34,11 +39,11 @@ function ParticlesMesh() {
 
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
-      positions[i3] = (Math.random() - 0.5) * 10;
-      positions[i3 + 1] = (Math.random() - 0.5) * 10;
-      positions[i3 + 2] = (Math.random() - 0.5) * 10;
+      positions[i3] = (seededRandom(i * 3 + 1) - 0.5) * 10;
+      positions[i3 + 1] = (seededRandom(i * 3 + 2) - 0.5) * 10;
+      positions[i3 + 2] = (seededRandom(i * 3 + 3) - 0.5) * 10;
 
-      const t = Math.random();
+      const t = seededRandom(i * 3 + 4);
       const color = colorA.clone().lerp(colorB, t);
       colors[i3] = color.r;
       colors[i3 + 1] = color.g;

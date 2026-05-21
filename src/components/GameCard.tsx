@@ -101,9 +101,10 @@ export default function GameCard() {
   // ── Unmount cleanup ──────────────────────────────────────────────────
 
   useEffect(() => {
+    const gs = gameRef.current;
     return () => {
       document.body.style.overflow = "";
-      cancelAnimationFrame(gameRef.current.frameId);
+      cancelAnimationFrame(gs.frameId);
       cancelAnimationFrame(bgFrameRef.current);
     };
   }, []);
@@ -176,7 +177,6 @@ export default function GameCard() {
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(bgFrameRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // ── ESC key exit ────────────────────────────────────────────────────

@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { smoothTransition } from "@/lib/animations";
 
 // ─── Master data ───────────────────────────────────────────────────────
 
@@ -141,7 +140,6 @@ export default function CyberPhilosopherPage() {
 
   // ── Render ─────────────────────────────────────────────────────
 
-  const isAdler = master?.id === "adler";
   const accentColor = master?.accent || "text-accent-primary";
   const borderColor = master?.border || "border-accent-primary/20";
 
@@ -204,6 +202,9 @@ export default function CyberPhilosopherPage() {
                 你的专属 AI 赛博疗愈站。
                 <br className="hidden sm:block" />
                 穿越时空，与心理学大师进行一场只属于你的深度对话。
+              </p>
+              <p className="mt-3 max-w-md text-xs leading-relaxed text-text-muted/50">
+                AI 对话仅用于情绪陪伴与自我反思，不构成医疗、诊断或心理治疗建议。
               </p>
               <div className="mt-10 flex items-center gap-2 text-[11px] tracking-widest text-text-muted/40 uppercase">
                 <span>选择一位先哲</span>
@@ -419,6 +420,9 @@ export default function CyberPhilosopherPage() {
 
           {/* Input */}
           <div className="fixed bottom-0 left-0 right-0 z-20 border-t border-white/[0.04] bg-gradient-to-t from-bg-primary via-bg-primary to-transparent px-4 pb-5 pt-3 sm:px-6">
+            <p className="mx-auto mb-2 max-w-3xl text-center text-[10px] leading-relaxed text-text-muted/35">
+              若你正处于危机或有伤害自己的想法，请立即联系身边的人或当地紧急救助服务。
+            </p>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -533,8 +537,8 @@ function ParticlesCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let particles: { x: number; y: number; vx: number; vy: number; r: number; alpha: number }[] = [];
-    let mouse = { x: -999, y: -999 };
+    const particles: { x: number; y: number; vx: number; vy: number; r: number; alpha: number }[] = [];
+    const mouse = { x: -999, y: -999 };
     let frameId = 0;
 
     const resize = () => {

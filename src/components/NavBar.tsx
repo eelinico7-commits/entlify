@@ -29,14 +29,14 @@ export default function NavBar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-10 sm:py-4">
         <a
           href="#hero"
-          className="text-sm font-semibold tracking-wide text-text-primary transition-colors hover:text-accent-primary"
+          className="shrink-0 text-sm font-semibold tracking-wide text-text-primary transition-colors hover:text-accent-primary"
         >
           杨存邦
         </a>
-        <ul className="flex items-center gap-5 sm:gap-8">
+        <ul className="flex min-w-0 items-center gap-4 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-8">
           {navItems.map((item) => (
             <li key={item.href}>
               <a

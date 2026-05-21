@@ -1,12 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 type Message = {
   id: number;
@@ -24,16 +18,22 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (!authenticated) return;
-    supabase
-      .from("messages")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .then(({ data, error }) => {
+    fetch("/api/admin/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    })
+      .then((res) => res.json())
+      .then(({ messages: nextMessages, error }) => {
         if (error) console.error(error);
-        else setMessages(data ?? []);
+        else setMessages(nextMessages ?? []);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
         setLoading(false);
       });
-  }, [authenticated]);
+  }, [authenticated, password]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,6 +46,7 @@ export default function AdminPage() {
     if (valid) {
       setAuthenticated(true);
       setPasswordError(false);
+      setLoading(true);
     } else {
       setPasswordError(true);
       setPassword("");

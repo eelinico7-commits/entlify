@@ -42,7 +42,9 @@ export default function JourneyCard() {
     <div className="flex h-full flex-col p-6 sm:p-8">
       {/* Terminal-style header */}
       <div className="mb-6 flex items-center gap-3">
-        <span className="font-mono text-xs text-accent-primary/60">//</span>
+        <span className="font-mono text-xs text-accent-primary/60">
+          {"//"}
+        </span>
         <h3 className="font-mono text-[11px] tracking-widest uppercase text-text-muted/50">
           经历 & 方法论
         </h3>

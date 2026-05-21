@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { staggerContainer, scrollStagger } from "@/lib/animations";
 
 const featuredProject = {
   icon: "🕸️",

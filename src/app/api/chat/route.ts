@@ -8,6 +8,43 @@ const client = new OpenAI({
   baseURL: process.env.OPENAI_BASE_URL || undefined,
 });
 
+const MAX_MESSAGE_LENGTH = 500;
+const MAX_HISTORY_MESSAGES = 12;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 12;
+const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
+
+const crisisPatterns = [
+  /自杀/,
+  /轻生/,
+  /不想活/,
+  /结束生命/,
+  /伤害自己/,
+  /suicide/i,
+  /kill myself/i,
+];
+
+const getClientKey = (request: NextRequest) => {
+  const forwardedFor = request.headers.get("x-forwarded-for")?.split(",")[0];
+  return forwardedFor?.trim() || request.headers.get("x-real-ip") || "anonymous";
+};
+
+const isRateLimited = (key: string) => {
+  const now = Date.now();
+  const bucket = rateLimitBuckets.get(key);
+
+  if (!bucket || bucket.resetAt <= now) {
+    rateLimitBuckets.set(key, {
+      count: 1,
+      resetAt: now + RATE_LIMIT_WINDOW_MS,
+    });
+    return false;
+  }
+
+  bucket.count += 1;
+  return bucket.count > RATE_LIMIT_MAX;
+};
+
 // ── System Prompts ────────────────────────────────────────────────────
 
 const SYSTEM_PROMPTS: Record<string, string> = {
@@ -39,15 +76,41 @@ interface ChatRequest {
 
 export async function POST(request: NextRequest) {
   try {
+    const clientKey = getClientKey(request);
+    if (isRateLimited(clientKey)) {
+      return NextResponse.json(
+        { error: "请求太频繁了，请稍后再试。" },
+        { status: 429 }
+      );
+    }
+
     const body: ChatRequest = await request.json();
     const { message, master = "adler", history = [] } = body;
+    const trimmedMessage = typeof message === "string" ? message.trim() : "";
 
     // Validation
-    if (!message || typeof message !== "string" || !message.trim()) {
+    if (!trimmedMessage) {
       return NextResponse.json({ error: "消息不能为空" }, { status: 400 });
     }
 
-    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === "sk-your-key-here") {
+    if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        { error: `消息太长了，请控制在 ${MAX_MESSAGE_LENGTH} 字以内。` },
+        { status: 400 }
+      );
+    }
+
+    if (crisisPatterns.some((pattern) => pattern.test(trimmedMessage))) {
+      return NextResponse.json({
+        reply:
+          "我很在意你现在的安全。请先离开危险物品，联系身边可信任的人；如果有立即危险，请马上拨打当地急救电话或心理危机热线。这个 AI 不能替代专业帮助。",
+      });
+    }
+
+    if (
+      !process.env.OPENAI_API_KEY ||
+      process.env.OPENAI_API_KEY === "sk-your-key-here"
+    ) {
       return NextResponse.json(
         { error: "后端未配置 API Key，请在 .env.local 中填写 OPENAI_API_KEY" },
         { status: 503 }
@@ -56,13 +119,25 @@ export async function POST(request: NextRequest) {
 
     // Pick system prompt
     const systemPrompt = SYSTEM_PROMPTS[master] || SYSTEM_PROMPTS.adler;
+    const safeHistory = history
+      .filter(
+        (item) =>
+          (item.role === "user" || item.role === "assistant") &&
+          typeof item.content === "string" &&
+          item.content.trim()
+      )
+      .slice(-MAX_HISTORY_MESSAGES)
+      .map((item) => ({
+        role: item.role,
+        content: item.content.slice(0, MAX_MESSAGE_LENGTH),
+      }));
 
     // Build messages array
     const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
       { role: "system", content: systemPrompt },
       // Last 6 exchanges for context (12 messages max)
-      ...history.slice(-12),
-      { role: "user", content: message.trim() },
+      ...safeHistory,
+      { role: "user", content: trimmedMessage },
     ];
 
     const completion = await client.chat.completions.create({
