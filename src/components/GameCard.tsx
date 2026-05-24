@@ -472,21 +472,21 @@ export default function GameCard() {
       {/* ── Card (default / idle state) ── */}
       <motion.div
         ref={cardRef}
-        className="relative cursor-pointer overflow-hidden rounded-2xl border border-white/[0.06]"
+        className="relative cursor-pointer overflow-hidden rounded-lg border border-white/[0.10]"
         style={{
           perspective: 1000,
           transformStyle: "preserve-3d",
           willChange: "transform",
           background:
-            "linear-gradient(135deg, #0a0a0a 0%, #141414 50%, #111111 100%)",
+            "linear-gradient(135deg, #101312 0%, #171917 50%, #070807 100%)",
           minHeight: 220,
-          boxShadow: "0 8px 40px rgba(0,0,0,0.4)",
+          boxShadow: "0 18px 60px rgba(0,0,0,0.38)",
         }}
         whileHover={{
           rotateX: 4,
           rotateY: -4,
           scale: 1.02,
-          boxShadow: "0 12px 56px rgba(168, 134, 68, 0.12)",
+          boxShadow: "0 20px 70px rgba(214, 170, 87, 0.16)",
           transition: { type: "spring", stiffness: 250, damping: 18 },
         }}
         onClick={open}
@@ -516,7 +516,7 @@ export default function GameCard() {
             飞机大战
           </h3>
           <p
-            className="text-sm text-text-muted"
+            className="text-sm text-text-secondary/85"
             style={{ transform: "translateZ(5px)" }}
           >
             手势控制 &middot; Canvas 射击游戏
@@ -525,7 +525,7 @@ export default function GameCard() {
 
         {/* Hover hint */}
         <div className="absolute bottom-3 right-3 z-10">
-          <span className="text-xs text-text-muted/40">点击展开</span>
+          <span className="text-xs text-text-muted/75">点击展开</span>
         </div>
       </motion.div>
 

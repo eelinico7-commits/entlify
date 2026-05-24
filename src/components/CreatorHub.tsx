@@ -31,7 +31,7 @@ export default function CreatorHub() {
       {/* Title */}
       <div className="mb-4 flex items-center gap-3">
         <span className="text-xl">📝</span>
-        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted">
+        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted/90">
           破局日记
         </h3>
       </div>
@@ -52,7 +52,7 @@ export default function CreatorHub() {
         {articles.map((article) => (
           <Link key={article.slug} href={`/notes/${article.slug}`}>
             <motion.div
-              className="group/article relative overflow-hidden rounded-2xl bg-bg-secondary/60 p-5 backdrop-blur-sm transition-all duration-300 hover:bg-bg-secondary/80"
+              className="group/article relative overflow-hidden rounded-lg border border-white/[0.08] bg-bg-secondary/65 p-5 backdrop-blur-sm transition-all duration-300 hover:border-accent-primary/30 hover:bg-bg-secondary/90"
               variants={itemVariants}
               whileHover={{ x: 4 }}
             >
@@ -61,10 +61,10 @@ export default function CreatorHub() {
 
               {/* Label row */}
               <div className="relative mb-2 flex items-center gap-2">
-                <span className="rounded-full bg-accent-primary/10 px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-accent-primary/80">
+                <span className="rounded-md border border-accent-primary/20 bg-accent-primary/[0.14] px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-accent-secondary/90">
                   {article.category}
                 </span>
-                <span className="text-[10px] text-text-muted/50">
+                <span className="text-[10px] text-text-muted/80">
                   {article.date} · {article.readTime}
                 </span>
               </div>
@@ -75,12 +75,12 @@ export default function CreatorHub() {
               </h4>
 
               {/* Summary */}
-              <p className="relative text-xs leading-relaxed text-text-secondary/70">
+              <p className="relative text-xs leading-relaxed text-text-secondary/90">
                 {article.summary}
               </p>
 
               {/* Read more */}
-              <div className="relative mt-2 flex items-center gap-1 text-xs font-medium text-text-muted/60 transition-all duration-300 group-hover/article:text-accent-primary">
+              <div className="relative mt-2 flex items-center gap-1 text-xs font-medium text-text-muted/80 transition-all duration-300 group-hover/article:text-accent-secondary">
                 阅读更多
                 <span className="inline-block transition-transform duration-300 group-hover/article:translate-x-1">
                   →
@@ -93,11 +93,11 @@ export default function CreatorHub() {
 
       {/* Footer */}
       {articles.length === 0 && (
-        <div className="flex flex-1 items-center justify-center text-sm text-text-muted/40">
+        <div className="flex flex-1 items-center justify-center text-sm text-text-muted/75">
           暂无内容，敬请期待
         </div>
       )}
-      <div className="mt-auto pt-5 text-center text-xs text-text-muted/40">
+      <div className="mt-auto pt-5 text-center text-xs text-text-muted/75">
         持续更新中 · 敬请关注
       </div>
     </div>

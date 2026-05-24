@@ -98,7 +98,7 @@ export default function Guestbook() {
       {/* ---- Section Label ---- */}
       <div className="mb-10 flex items-center gap-4">
         <span className="h-px flex-1 bg-gradient-to-r from-accent-primary/40 to-transparent" />
-        <span className="text-xs tracking-[0.2em] uppercase text-accent-primary/60">
+        <span className="text-xs tracking-[0.18em] uppercase text-accent-secondary/85">
           留言 · Guestbook
         </span>
         <span className="h-px flex-1 bg-gradient-to-l from-accent-primary/40 to-transparent" />
@@ -107,7 +107,7 @@ export default function Guestbook() {
       {/* ---- Two-Column Layout (stacks on mobile) ---- */}
       <div className="grid gap-6 md:grid-cols-2">
         {/* ============ LEFT: Form Card ============ */}
-        <div className="group/card rounded-3xl border border-white/[0.06] bg-[var(--bg-card)] p-8 shadow-[var(--shadow-card)] transition-all duration-500 hover:border-white/[0.10] hover:shadow-[var(--shadow-card-hover)] sm:p-10">
+        <div className="group/card rounded-lg border border-white/[0.10] bg-[var(--bg-card)] p-8 shadow-[var(--shadow-card)] transition-all duration-500 hover:border-accent-primary/30 hover:shadow-[var(--shadow-card-hover)] sm:p-10">
           {/* Card header */}
           <h3 className="text-xl font-semibold tracking-tight text-[var(--text-primary)]">
             一起做些有意思的
@@ -132,7 +132,7 @@ export default function Guestbook() {
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 placeholder="怎么称呼你"
-                className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-300 focus:border-accent-primary/50 focus:bg-white/[0.05] focus:shadow-[0_0_0_3px_var(--accent-glow)]"
+                className="w-full rounded-lg border border-white/[0.12] bg-white/[0.055] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-300 focus:border-accent-primary/55 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_var(--accent-glow)]"
               />
               <p className="mt-2 text-xs leading-relaxed text-[var(--text-muted)]">
                 这里会公开展示；联系方式建议通过右侧微信二维码私聊。
@@ -153,14 +153,14 @@ export default function Guestbook() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="想说什么都可以 ✦"
-                className="w-full resize-none rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-300 focus:border-accent-primary/50 focus:bg-white/[0.05] focus:shadow-[0_0_0_3px_var(--accent-glow)]"
+                className="w-full resize-none rounded-lg border border-white/[0.12] bg-white/[0.055] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-300 focus:border-accent-primary/55 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_var(--accent-glow)]"
               />
             </div>
 
             {/* Submit button */}
             <button
               type="submit"
-              className="group/btn relative w-full overflow-hidden rounded-xl border border-accent-primary/20 bg-gradient-to-b from-accent-primary/15 to-accent-primary/5 px-6 py-3 text-sm font-medium text-accent-secondary transition-all duration-300 hover:border-accent-primary/40 hover:from-accent-primary/25 hover:to-accent-primary/10 hover:shadow-[0_0_30px_var(--accent-glow)] active:scale-[0.98]"
+              className="group/btn relative w-full overflow-hidden rounded-lg border border-accent-primary/35 bg-gradient-to-b from-accent-primary/[0.20] to-accent-primary/[0.08] px-6 py-3 text-sm font-medium text-accent-secondary transition-all duration-300 hover:border-accent-secondary/55 hover:from-accent-primary/[0.28] hover:to-accent-primary/[0.12] hover:shadow-[0_0_30px_var(--accent-glow)] active:scale-[0.98]"
             >
               {/* Shimmer overlay */}
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.06] to-transparent transition-transform duration-700 group-hover/btn:translate-x-full" />
@@ -207,7 +207,7 @@ export default function Guestbook() {
         </div>
 
         {/* ============ RIGHT: QR / Brand Card ============ */}
-        <div className="rounded-3xl border border-white/[0.06] bg-[var(--bg-card)] p-8 shadow-[var(--shadow-card)] transition-all duration-500 hover:border-white/[0.10] hover:shadow-[var(--shadow-card-hover)] sm:p-10">
+        <div className="rounded-lg border border-white/[0.10] bg-[var(--bg-card)] p-8 shadow-[var(--shadow-card)] transition-all duration-500 hover:border-accent-primary/30 hover:shadow-[var(--shadow-card-hover)] sm:p-10">
           <div className="flex flex-col items-center">
             <h3 className="text-xl font-semibold tracking-tight text-[var(--text-primary)]">
               找到我
@@ -217,7 +217,7 @@ export default function Guestbook() {
             </p>
 
             {/* ---- QR Code ---- */}
-            <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.5)] transition-all duration-500 hover:shadow-[0_12px_56px_rgba(0,0,0,0.6)]">
+            <div className="relative mt-8 overflow-hidden rounded-lg border border-white/[0.12] shadow-[0_8px_40px_rgba(0,0,0,0.5)] transition-all duration-500 hover:shadow-[0_12px_56px_rgba(0,0,0,0.6)]">
               <Image
                 src="/wechat-qr.png"
                 alt="杨存邦微信二维码"
@@ -240,7 +240,7 @@ export default function Guestbook() {
         <div className="mt-10">
           <div className="mb-5 flex items-center gap-4">
             <span className="h-px flex-1 bg-gradient-to-r from-accent-primary/20 to-transparent" />
-            <span className="text-[10px] tracking-[0.2em] uppercase text-text-muted/40">
+            <span className="text-[10px] tracking-[0.18em] uppercase text-text-muted/75">
               最新留言 · {messages.length}
             </span>
             <span className="h-px flex-1 bg-gradient-to-l from-accent-primary/20 to-transparent" />
@@ -250,17 +250,17 @@ export default function Guestbook() {
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className="message-item rounded-2xl border border-white/[0.04] bg-white/[0.02] px-5 py-4 transition-all duration-300 hover:border-white/[0.08] hover:bg-white/[0.04]"
+                className="message-item rounded-lg border border-white/[0.08] bg-white/[0.045] px-5 py-4 transition-all duration-300 hover:border-accent-primary/25 hover:bg-white/[0.065]"
               >
                 <div className="mb-1 flex items-center justify-between">
                   <span className="text-sm font-medium text-text-primary/80">
                     {getPublicName(msg.name)}
                   </span>
-                  <span className="text-[10px] text-text-muted/30">
+                  <span className="text-[10px] text-text-muted/70">
                     {timeAgo(msg.created_at)}
                   </span>
                 </div>
-                <p className="text-sm leading-relaxed text-text-secondary/60">
+                <p className="text-sm leading-relaxed text-text-secondary/85">
                   {msg.content}
                 </p>
               </div>

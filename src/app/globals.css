@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
 /* =========================================================
-   Sophisticated Dark Theme — 纯粹深色 + 暖金点缀
+   Sophisticated dark theme
    ========================================================= */
 :root {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #111111;
-  --bg-card: #141414;
-  --bg-card-hover: #1a1a1a;
-  --text-primary: #f0eee6;
-  --text-secondary: #94a3b8;
-  --text-muted: #5c5a52;
-  --accent-primary: #a88644;
-  --accent-secondary: #c9b578;
-  --accent-glow: rgba(168, 134, 68, 0.12);
-  --accent-warm: #c4946a;
-  --accent-gold: #a88644;
+  --bg-primary: #070807;
+  --bg-secondary: #101312;
+  --bg-card: #171917;
+  --bg-card-hover: #20231f;
+  --text-primary: #fff8e8;
+  --text-secondary: #cdd5df;
+  --text-muted: #a39d8f;
+  --accent-primary: #d6aa57;
+  --accent-secondary: #f0d68a;
+  --accent-glow: rgba(214, 170, 87, 0.16);
+  --accent-warm: #dc9b6a;
+  --accent-gold: #d6aa57;
 
   /* New accent colors */
-  --accent-green: #7d9e6b;
-  --accent-green-glow: rgba(125, 158, 107, 0.12);
-  --accent-blue: #6b8fc4;
-  --accent-blue-glow: rgba(107, 143, 196, 0.12);
+  --accent-green: #96b985;
+  --accent-green-glow: rgba(150, 185, 133, 0.14);
+  --accent-blue: #84aee6;
+  --accent-blue-glow: rgba(132, 174, 230, 0.14);
 
-  --border-color: rgba(255, 255, 255, 0.05);
-  --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.4);
-  --shadow-card-hover: 0 12px 56px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 60px rgba(168, 134, 68, 0.06);
-  --shadow-glow-hover: 0 0 80px rgba(168, 134, 68, 0.1);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-card: 0 18px 60px rgba(0, 0, 0, 0.38);
+  --shadow-card-hover: 0 24px 72px rgba(0, 0, 0, 0.48);
+  --shadow-glow: 0 0 60px rgba(214, 170, 87, 0.08);
+  --shadow-glow-hover: 0 0 80px rgba(214, 170, 87, 0.13);
 }
 
 @theme inline {
@@ -45,8 +45,8 @@
   --color-accent-green: var(--accent-green);
   --color-accent-blue: var(--accent-blue);
   --color-border-color: var(--border-color);
-  --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.4);
-  --shadow-card-hover: 0 12px 56px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 18px 60px rgba(0, 0, 0, 0.38);
+  --shadow-card-hover: 0 24px 72px rgba(0, 0, 0, 0.48);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -57,8 +57,18 @@ html {
 }
 
 body {
-  background: var(--bg-primary);
+  background:
+    radial-gradient(ellipse 70% 45% at 50% -10%, rgba(214, 170, 87, 0.08), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 100% 20%, rgba(132, 174, 230, 0.055), transparent 60%),
+    linear-gradient(180deg, #090a09 0%, var(--bg-primary) 38%, #050605 100%);
   color: var(--text-primary);
+  font-family:
+    var(--font-geist-sans),
+    "Microsoft YaHei UI",
+    "PingFang SC",
+    "Noto Sans SC",
+    system-ui,
+    sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -70,8 +80,11 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(168, 134, 68, 0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(107, 143, 196, 0.03) 0%, transparent 50%);
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 60% at 18% 18%, rgba(214, 170, 87, 0.045) 0%, transparent 62%),
+    radial-gradient(ellipse 60% 50% at 82% 82%, rgba(132, 174, 230, 0.04) 0%, transparent 52%);
+  background-size: 72px 72px, 72px 72px, auto, auto;
   pointer-events: none;
   z-index: 0;
 }
@@ -99,22 +112,22 @@ body::before {
 
 /* ---- Utility: glass morphism ---- */
 @utility glass {
-  background: rgba(20, 20, 20, 0.6);
+  background: rgba(23, 25, 23, 0.72);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
 }
 
 @utility glass-strong {
-  background: rgba(10, 10, 10, 0.8);
+  background: rgba(10, 12, 11, 0.86);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* ---- Utility: text gradients ---- */
 @utility text-gradient {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  background: linear-gradient(135deg, #f5dc9c, var(--accent-primary) 48%, #ffe9b5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -145,7 +158,7 @@ body::before {
 @utility section-heading {
   font-size: clamp(3rem, 8vw, 7rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   line-height: 1.05;
   color: var(--text-primary);
 }
@@ -153,10 +166,10 @@ body::before {
 @utility section-heading-muted {
   font-size: clamp(3rem, 8vw, 7rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   line-height: 1.05;
   color: var(--text-secondary);
-  opacity: 0.4;
+  opacity: 0.58;
 }
 
 /* ---- Section number (e.g. /01) ---- */
@@ -210,10 +223,10 @@ body::before {
     background: conic-gradient(
       from var(--glow-angle, 0deg) at 50% 50%,
       transparent 0deg,
-      rgba(168, 134, 68, 0.20) 50deg,
-      rgba(201, 181, 120, 0.18) 100deg,
+      rgba(214, 170, 87, 0.24) 50deg,
+      rgba(240, 214, 138, 0.2) 100deg,
       transparent 150deg,
-      rgba(168, 134, 68, 0.08) 220deg,
+      rgba(132, 174, 230, 0.1) 220deg,
       transparent 300deg,
       transparent 360deg
     );

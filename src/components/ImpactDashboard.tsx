@@ -48,22 +48,22 @@ export default function ImpactDashboard() {
     >
       {/* Section label */}
       <div className="mb-8 flex items-center gap-3">
-        <span className="font-mono text-[10px] tracking-[0.25em] text-accent-primary/50 uppercase">
+        <span className="font-mono text-[10px] tracking-[0.22em] text-accent-secondary/80 uppercase">
           / 01
         </span>
-        <div className="h-px flex-1 bg-gradient-to-r from-accent-primary/20 to-transparent" />
+        <div className="h-px flex-1 bg-gradient-to-r from-accent-primary/40 to-transparent" />
       </div>
 
       {/* Achievement wall */}
       <div className="relative">
         {/* Background ambient glow */}
-        <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-b from-accent-primary/[0.03] to-transparent blur-2xl" />
+        <div className="pointer-events-none absolute inset-0 rounded-lg bg-gradient-to-b from-accent-primary/[0.055] to-transparent blur-2xl" />
 
         <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {metrics.map((m, i) => (
             <motion.div
               key={m.label}
-              className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-b from-bg-card to-bg-card/60 p-5 shadow-card transition-all duration-500 hover:border-white/[0.15] sm:p-6"
+              className="group relative overflow-hidden rounded-lg border border-white/[0.10] bg-gradient-to-b from-bg-card to-bg-card/75 p-5 shadow-card transition-all duration-500 hover:border-accent-primary/35 sm:p-6"
               custom={i}
               variants={itemVariants}
               initial="hidden"
@@ -91,12 +91,12 @@ export default function ImpactDashboard() {
                   ) : m.suffix === "+" ? (
                     <>
                       <CountUp end={m.numeric} />
-                      <span className="text-accent-primary/70">+</span>
+                      <span className="text-accent-secondary/90">+</span>
                     </>
                   ) : (
                     <>
                       <CountUp end={m.numeric} />
-                      <span className="ml-0.5 text-xl font-light text-accent-primary/60 sm:text-2xl">
+                      <span className="ml-0.5 text-xl font-light text-accent-secondary/85 sm:text-2xl">
                         {m.suffix}
                       </span>
                     </>
@@ -104,7 +104,7 @@ export default function ImpactDashboard() {
                 </p>
 
                 {/* Label */}
-                <p className="mt-1.5 text-xs text-text-secondary/60 sm:text-sm">
+                <p className="mt-1.5 text-xs text-text-secondary/85 sm:text-sm">
                   {m.sublabel}
                 </p>
               </div>

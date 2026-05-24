@@ -56,7 +56,7 @@ export default function BentoGrid() {
         <CyberPhilosopherPromo />
 
         {/* 其他项目 — Bento 网格 */}
-        <div className="card-glow mt-6 rounded-2xl">
+        <div className="card-glow mt-6 rounded-lg">
           <ProjectShowcase />
         </div>
       </motion.div>
@@ -78,7 +78,7 @@ export default function BentoGrid() {
           subtitle="从医学生到 AI 探索者的成长路径"
         />
 
-        <div className="card-glow rounded-2xl">
+        <div className="card-glow rounded-lg">
           <JourneyCard />
         </div>
       </motion.div>
@@ -107,13 +107,13 @@ export default function BentoGrid() {
           {/* 能力系统 — 2 cols */}
           <motion.div
             variants={gridItem}
-            className="card-glow rounded-2xl lg:col-span-2"
+            className="card-glow rounded-lg lg:col-span-2"
           >
             <RoleCards />
           </motion.div>
 
           {/* 工具栈 — 1 col */}
-          <motion.div variants={gridItem} className="card-glow rounded-2xl">
+          <motion.div variants={gridItem} className="card-glow rounded-lg">
             <SkillsCard />
           </motion.div>
         </motion.div>
@@ -143,7 +143,7 @@ export default function BentoGrid() {
           {/* 日记主区域 — 3 篇文章 */}
           <motion.div
             variants={gridItem}
-            className="card-glow rounded-2xl lg:col-span-2"
+            className="card-glow rounded-lg lg:col-span-2"
           >
             <CreatorHub />
           </motion.div>
@@ -151,7 +151,7 @@ export default function BentoGrid() {
           {/* 极客精神 */}
           <motion.div
             variants={gridItem}
-            className="card-glow rounded-2xl"
+            className="card-glow rounded-lg"
           >
             <InterestsCard />
           </motion.div>
@@ -159,7 +159,7 @@ export default function BentoGrid() {
           {/* 飞机大战 */}
           <motion.div
             variants={gridItem}
-            className="card-glow rounded-2xl lg:col-span-1"
+            className="card-glow rounded-lg lg:col-span-1"
           >
             <GameCard />
           </motion.div>

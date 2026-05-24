@@ -42,18 +42,18 @@ export default function JourneyCard() {
     <div className="flex h-full flex-col p-6 sm:p-8">
       {/* Terminal-style header */}
       <div className="mb-6 flex items-center gap-3">
-        <span className="font-mono text-xs text-accent-primary/60">
+        <span className="font-mono text-xs text-accent-secondary/85">
           {"//"}
         </span>
-        <h3 className="font-mono text-[11px] tracking-widest uppercase text-text-muted/50">
+        <h3 className="font-mono text-[11px] tracking-widest uppercase text-text-muted/80">
           经历 & 方法论
         </h3>
-        <div className="ml-2 h-px flex-1 bg-white/[0.04]" />
+        <div className="ml-2 h-px flex-1 bg-white/[0.10]" />
       </div>
 
       {/* Timeline */}
       <div className="relative mb-8 pl-7">
-        <div className="absolute left-[5px] top-2 h-[calc(100%-16px)] w-px bg-white/[0.06]" />
+        <div className="absolute left-[5px] top-2 h-[calc(100%-16px)] w-px bg-white/[0.12]" />
         <ul className="space-y-10">
           {timelineItems.map((item, index) => (
             <motion.li
@@ -66,14 +66,14 @@ export default function JourneyCard() {
               viewport={{ once: true }}
             >
               <div className="absolute -left-[26px] top-2 h-2 w-2 rounded-full bg-accent-primary/60" />
-              <span className="mb-2 inline-block text-[11px] font-medium tracking-wider text-text-muted/60 uppercase">
+              <span className="mb-2 inline-block text-[11px] font-medium tracking-wider text-text-muted/85 uppercase">
                 {item.period}
               </span>
-              <h4 className="mt-1 text-xl font-semibold tracking-tight text-text-primary">
+              <h4 className="mt-1 text-xl font-semibold tracking-normal text-text-primary">
                 {item.title}
               </h4>
               <p className="mt-0.5 text-sm text-accent-warm/80">{item.subtitle}</p>
-              <p className="mt-3 text-sm leading-relaxed text-text-secondary/70">
+              <p className="mt-3 text-sm leading-relaxed text-text-secondary/90">
                 {item.description}
               </p>
             </motion.li>
@@ -82,15 +82,15 @@ export default function JourneyCard() {
       </div>
 
       {/* Methodologies */}
-      <div className="border-t border-white/[0.04] pt-6">
-        <span className="mb-4 inline-block font-mono text-[10px] tracking-widest text-text-muted/40 uppercase">
+      <div className="border-t border-white/[0.10] pt-6">
+        <span className="mb-4 inline-block font-mono text-[10px] tracking-widest text-text-muted/80 uppercase">
           方法论
         </span>
         <div className="flex flex-col gap-4">
           {methodologies.map((m, i) => (
             <motion.div
               key={m.title}
-              className="rounded-2xl bg-bg-secondary/40 p-5 transition-all duration-300 hover:border hover:border-white/[0.06] hover:bg-bg-secondary/70"
+              className="rounded-lg border border-white/[0.08] bg-bg-secondary/55 p-5 transition-all duration-300 hover:border-accent-primary/30 hover:bg-bg-secondary/85"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -103,7 +103,7 @@ export default function JourneyCard() {
                   {m.title}
                 </h4>
               </div>
-              <p className="text-xs leading-relaxed text-text-secondary/70">
+              <p className="text-xs leading-relaxed text-text-secondary/90">
                 {m.description}
               </p>
             </motion.div>
@@ -112,7 +112,7 @@ export default function JourneyCard() {
       </div>
 
       {/* Bottom flourish */}
-      <div className="mt-6 border-t border-white/[0.04] pt-5 text-center text-xs text-text-muted/40">
+      <div className="mt-6 border-t border-white/[0.10] pt-5 text-center text-xs text-text-muted/75">
         <span>从校园到领航 · 一直在路上</span>
       </div>
     </div>

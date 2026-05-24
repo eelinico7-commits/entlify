@@ -48,15 +48,15 @@ export default function ProjectShowcase() {
       {/* Header */}
       <div className="mb-6 flex items-center gap-3">
         <span className="text-xl">💼</span>
-        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted">
+        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted/90">
           更多项目
         </h3>
-        <div className="ml-2 h-px flex-1 bg-white/[0.04]" />
+        <div className="ml-2 h-px flex-1 bg-white/[0.10]" />
       </div>
 
       {/* Featured project — large hero card */}
       <motion.div
-        className="group/featured relative mb-4 overflow-hidden rounded-2xl bg-gradient-to-br from-accent-primary/[0.08] via-accent-secondary/[0.03] to-transparent p-6 transition-all duration-500 hover:bg-accent-primary/[0.04] sm:p-8"
+        className="group/featured relative mb-4 overflow-hidden rounded-lg border border-white/[0.08] bg-gradient-to-br from-accent-primary/[0.10] via-bg-secondary/80 to-bg-secondary/45 p-6 transition-all duration-500 hover:border-accent-primary/30 hover:from-accent-primary/[0.13] sm:p-8"
         variants={itemVariants}
         initial="hidden"
         whileInView="visible"
@@ -75,12 +75,12 @@ export default function ProjectShowcase() {
               <h4 className="text-lg font-semibold text-text-primary">
                 {featuredProject.title}
               </h4>
-              <p className="mt-0.5 font-mono text-[11px] tracking-wider text-accent-primary/60">
+              <p className="mt-0.5 font-mono text-[11px] tracking-wider text-accent-secondary/80">
                 {featuredProject.tech}
               </p>
             </div>
           </div>
-          <span className="rounded-full border border-accent-primary/20 bg-accent-primary/10 px-3 py-1 font-mono text-[9px] tracking-wider text-accent-primary/70 uppercase">
+          <span className="rounded-md border border-accent-primary/30 bg-accent-primary/[0.14] px-3 py-1 font-mono text-[9px] tracking-wider text-accent-secondary/90 uppercase">
             Featured
           </span>
         </div>
@@ -95,7 +95,7 @@ export default function ProjectShowcase() {
           {featuredProject.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 font-mono text-[10px] text-text-muted transition-all duration-200 group-hover/featured:border-accent-primary/20 group-hover/featured:text-accent-primary/60"
+              className="rounded-md border border-white/[0.10] bg-white/[0.045] px-2.5 py-1 font-mono text-[10px] text-text-secondary/85 transition-all duration-200 group-hover/featured:border-accent-primary/35 group-hover/featured:text-accent-secondary"
             >
               {tag}
             </span>
@@ -117,7 +117,7 @@ export default function ProjectShowcase() {
         {otherProjects.map((project) => (
           <motion.div
             key={project.title}
-            className="group/card relative overflow-hidden rounded-2xl bg-gradient-to-br from-bg-secondary/60 to-bg-secondary/30 p-5 transition-all duration-500 hover:from-bg-secondary/80 hover:to-bg-secondary/50"
+            className="group/card relative overflow-hidden rounded-lg border border-white/[0.08] bg-gradient-to-br from-bg-secondary/70 to-bg-secondary/40 p-5 transition-all duration-500 hover:border-accent-primary/30 hover:from-bg-secondary/90 hover:to-bg-secondary/60"
             variants={itemVariants}
             whileHover={{ y: -4, scale: 1.01 }}
           >
@@ -132,11 +132,11 @@ export default function ProjectShowcase() {
                 </h4>
               </div>
 
-              <p className="mb-2 font-mono text-[10px] tracking-wider text-accent-primary/50">
+              <p className="mb-2 font-mono text-[10px] tracking-wider text-accent-secondary/75">
                 {project.tech}
               </p>
 
-              <p className="mb-3 text-xs leading-relaxed text-text-secondary/70">
+              <p className="mb-3 text-xs leading-relaxed text-text-secondary/90">
                 {project.description}
               </p>
 
@@ -144,7 +144,7 @@ export default function ProjectShowcase() {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-0.5 font-mono text-[9px] text-text-muted transition-colors duration-200 group-hover/card:border-accent-primary/20 group-hover/card:text-accent-primary/60"
+                    className="rounded-md border border-white/[0.10] bg-white/[0.045] px-2 py-0.5 font-mono text-[9px] text-text-secondary/85 transition-colors duration-200 group-hover/card:border-accent-primary/35 group-hover/card:text-accent-secondary"
                   >
                     {tag}
                   </span>
@@ -156,7 +156,7 @@ export default function ProjectShowcase() {
       </motion.div>
 
       {/* Footer */}
-      <div className="mt-5 border-t border-white/[0.04] pt-4 text-center text-xs text-text-muted/40">
+      <div className="mt-5 border-t border-white/[0.10] pt-4 text-center text-xs text-text-muted/75">
         <span>更多项目持续开发中 · 敬请期待</span>
       </div>
     </div>

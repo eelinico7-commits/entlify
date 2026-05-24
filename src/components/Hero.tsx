@@ -6,8 +6,8 @@ import { heroContainer, heroItem } from "@/lib/animations";
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-24">
-      {/* Ambient glow behind hero */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-accent-primary/[0.04] blur-[120px]" />
+      <div className="pointer-events-none absolute inset-x-0 top-[12%] mx-auto h-[520px] max-w-5xl bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.58),rgba(0,0,0,0.22)_42%,transparent_70%)] blur-2xl" />
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent-primary/[0.06] blur-[130px]" />
 
       <motion.div
         className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center text-center"
@@ -17,7 +17,7 @@ export default function Hero() {
       >
         {/* Eyebrow */}
         <motion.span
-          className="mb-6 font-mono text-[10px] tracking-[0.3em] text-accent-primary/60 uppercase"
+          className="mb-6 font-mono text-[10px] tracking-[0.24em] text-accent-secondary/80 uppercase"
           variants={heroItem}
         >
           Portfolio · 2026
@@ -25,7 +25,7 @@ export default function Hero() {
 
         {/* Main title — English */}
         <motion.h1
-          className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+          className="text-4xl font-bold tracking-normal sm:text-5xl md:text-6xl lg:text-7xl"
           variants={heroItem}
         >
           <span className="text-gradient">Medical Student</span>
@@ -35,7 +35,7 @@ export default function Hero() {
 
         {/* Chinese tagline */}
         <motion.p
-          className="mt-6 max-w-2xl text-base leading-relaxed text-text-secondary/80 sm:text-lg"
+          className="mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg"
           variants={heroItem}
         >
           一个医学生，正在用 AI 把学习、内容、项目和成长重新连接起来。
@@ -54,7 +54,7 @@ export default function Hero() {
           ].map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3.5 py-1.5 font-mono text-[10px] tracking-wide text-text-muted transition-colors duration-300 hover:border-accent-primary/30 hover:text-accent-primary/80 sm:text-[11px]"
+              className="rounded-lg border border-white/[0.10] bg-white/[0.055] px-3.5 py-1.5 font-mono text-[10px] tracking-wide text-text-secondary/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-colors duration-300 hover:border-accent-primary/45 hover:text-accent-secondary sm:text-[11px]"
             >
               {tag}
             </span>
@@ -68,7 +68,7 @@ export default function Hero() {
         >
           <a
             href="#metrics"
-            className="btn-shine inline-flex items-center gap-2 rounded-full border border-accent-primary/25 bg-accent-primary/10 px-6 py-3 text-sm font-medium text-accent-secondary transition-all duration-300 hover:border-accent-primary/40 hover:bg-accent-primary/20 hover:shadow-[0_0_30px_rgba(168,134,68,0.15)]"
+            className="btn-shine inline-flex items-center gap-2 rounded-lg border border-accent-primary/40 bg-accent-primary/[0.16] px-6 py-3 text-sm font-medium text-accent-secondary shadow-[0_12px_34px_rgba(0,0,0,0.28)] transition-all duration-300 hover:border-accent-secondary/60 hover:bg-accent-primary/[0.24] hover:shadow-[0_0_34px_var(--accent-glow)]"
           >
             探索更多
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -82,7 +82,7 @@ export default function Hero() {
           className="mt-14 flex flex-col items-center gap-4"
           variants={heroItem}
         >
-          <span className="text-[9px] tracking-[0.25em] text-text-muted/30 uppercase">
+          <span className="text-[9px] tracking-[0.22em] text-text-muted/70 uppercase">
             Social Presence
           </span>
           <div className="grid grid-cols-2 gap-2.5">
@@ -97,7 +97,7 @@ export default function Hero() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-2 text-[11px] text-text-muted/70 transition-all duration-300 hover:border-accent-primary/30 hover:text-accent-primary/80 hover:shadow-[0_0_20px_rgba(168,134,68,0.12)]"
+                className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-white/[0.10] bg-white/[0.045] px-4 py-2 text-[11px] text-text-secondary/85 transition-all duration-300 hover:border-accent-primary/45 hover:text-accent-secondary hover:shadow-[0_0_22px_var(--accent-glow)]"
               >
                 {link.label}
               </a>
@@ -117,7 +117,7 @@ export default function Hero() {
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-[9px] tracking-[0.25em] text-text-muted/40 uppercase">
+            <span className="text-[9px] tracking-[0.22em] text-text-muted/65 uppercase">
               Scroll
             </span>
             <svg
@@ -129,7 +129,7 @@ export default function Hero() {
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-text-muted/30"
+              className="text-text-muted/60"
             >
               <path d="M6 9l6 6 6-6" />
             </svg>

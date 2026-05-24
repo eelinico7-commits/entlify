@@ -55,7 +55,7 @@ export default function SkillsCard() {
       {/* Header */}
       <div className="mb-6 flex items-center gap-3">
         <span className="text-xl">🛠️</span>
-        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted">
+        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted/90">
           工具栈
         </h3>
       </div>
@@ -71,7 +71,7 @@ export default function SkillsCard() {
         {toolGroups.map((group) => (
           <motion.div
             key={group.title}
-            className="group relative overflow-hidden rounded-2xl bg-bg-secondary/40 p-4 transition-all duration-300 hover:bg-bg-secondary/70"
+            className="group relative overflow-hidden rounded-lg border border-white/[0.08] bg-bg-secondary/55 p-4 transition-all duration-300 hover:border-accent-primary/30 hover:bg-bg-secondary/85"
             variants={itemVariants}
             whileHover={{ scale: 1.03, y: -2 }}
           >

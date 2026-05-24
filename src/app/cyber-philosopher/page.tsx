@@ -177,7 +177,7 @@ export default function CyberPhilosopherPage() {
             </span>
             <button
               onClick={() => setShowModal(true)}
-              className="rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-text-muted transition-all duration-300 hover:border-accent-primary/30 hover:text-accent-primary/80"
+              className="rounded-lg border border-white/[0.10] bg-white/[0.055] px-4 py-1.5 text-xs font-medium text-text-secondary/85 transition-all duration-300 hover:border-accent-primary/35 hover:text-accent-secondary"
             >
               关于
             </button>
@@ -186,10 +186,10 @@ export default function CyberPhilosopherPage() {
           <div className="flex-1 overflow-y-auto px-6 pb-10 sm:px-10">
             {/* Hero */}
             <section className="mt-8 sm:mt-16">
-              <div className="inline-block rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-1.5 text-[11px] tracking-wider text-accent-primary/70">
+              <div className="inline-block rounded-lg border border-white/[0.10] bg-white/[0.055] px-4 py-1.5 text-[11px] tracking-wider text-accent-secondary/85">
                 ✦ AI 赛博疗愈 · 情感陪伴
               </div>
-              <h1 className="mt-6 text-[clamp(2rem,7vw,3.6rem)] font-extrabold leading-[1.12] tracking-tight text-white/95">
+              <h1 className="mt-6 text-[clamp(2rem,7vw,3.6rem)] font-extrabold leading-[1.12] tracking-normal text-white/95">
                 深夜 emo 了？
                 <br />
                 <span className="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
@@ -198,15 +198,15 @@ export default function CyberPhilosopherPage() {
                 <br />
                 聊聊
               </h1>
-              <p className="mt-4 max-w-md text-base leading-relaxed text-text-secondary/80">
+              <p className="mt-4 max-w-md text-base leading-relaxed text-text-secondary">
                 你的专属 AI 赛博疗愈站。
                 <br className="hidden sm:block" />
                 穿越时空，与心理学大师进行一场只属于你的深度对话。
               </p>
-              <p className="mt-3 max-w-md text-xs leading-relaxed text-text-muted/50">
+              <p className="mt-3 max-w-md text-xs leading-relaxed text-text-muted/80">
                 AI 对话仅用于情绪陪伴与自我反思，不构成医疗、诊断或心理治疗建议。
               </p>
-              <div className="mt-10 flex items-center gap-2 text-[11px] tracking-widest text-text-muted/40 uppercase">
+              <div className="mt-10 flex items-center gap-2 text-[11px] tracking-widest text-text-muted/80 uppercase">
                 <span>选择一位先哲</span>
                 <span className="inline-block h-px w-8 bg-white/[0.06]" />
               </div>
@@ -221,7 +221,7 @@ export default function CyberPhilosopherPage() {
                   <div
                     key={id}
                     onClick={() => startChat(id)}
-                    className={`group relative flex-1 cursor-pointer overflow-hidden rounded-2xl border border-white/[0.06] bg-bg-card/50 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:scale-[1.01] hover:border-white/[0.12] sm:p-8`}
+                    className={`group relative flex-1 cursor-pointer overflow-hidden rounded-lg border border-white/[0.10] bg-bg-card/75 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:scale-[1.005] hover:border-accent-primary/35 sm:p-8`}
                   >
                     <div
                       className={`pointer-events-none absolute -right-8 -top-8 h-[120px] w-[120px] rounded-full opacity-30 blur-[50px] transition-opacity duration-500 ${
@@ -230,7 +230,7 @@ export default function CyberPhilosopherPage() {
                     />
                     <div className="relative z-10">
                       <div
-                        className={`mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br text-2xl shadow-lg ${
+                        className={`mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-gradient-to-br text-2xl shadow-lg ${
                           isA
                             ? "from-accent-primary/20 to-accent-warm/10 shadow-accent-primary/5"
                             : "from-[#8b7cf7]/20 to-[#8b7cf7]/5 shadow-[#8b7cf7]/5"
@@ -241,7 +241,7 @@ export default function CyberPhilosopherPage() {
                       <h3 className="text-xl font-bold text-white/95">
                         {m.name}
                       </h3>
-                      <p className="mt-1 text-sm text-text-muted">{m.nameEn}</p>
+                      <p className="mt-1 text-sm text-text-muted/85">{m.nameEn}</p>
                       <div className="mt-4 flex flex-wrap gap-2">
                         {(
                           isA
@@ -250,17 +250,17 @@ export default function CyberPhilosopherPage() {
                         ).map((tag) => (
                           <span
                             key={tag}
-                            className={`rounded-full border px-3 py-1 text-[11px] font-medium ${
+                            className={`rounded-md border px-3 py-1 text-[11px] font-medium ${
                               isA
-                                ? "border-accent-primary/20 bg-accent-primary/8 text-accent-primary/80"
-                                : "border-[#8b7cf7]/20 bg-[#8b7cf7]/8 text-[#8b7cf7]/80"
+                                ? "border-accent-primary/30 bg-accent-primary/[0.12] text-accent-secondary/90"
+                                : "border-[#8b7cf7]/30 bg-[#8b7cf7]/[0.12] text-[#b9b0ff]"
                             }`}
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
-                      <p className="mt-4 text-sm leading-relaxed text-text-secondary/70">
+                      <p className="mt-4 text-sm leading-relaxed text-text-secondary/90">
                         {isA
                           ? "「一切烦恼都来自人际关系。」帮你剖析自卑与超越，找到内心的勇气。"
                           : "「你的潜意识正在操控你的人生。」带你探索梦境、阴影与集体无意识。"}
@@ -283,7 +283,7 @@ export default function CyberPhilosopherPage() {
               })}
             </section>
 
-            <footer className="mt-14 text-center text-xs text-text-muted/30">
+            <footer className="mt-14 text-center text-xs text-text-muted/70">
               赛博先哲 · Cyber Philosopher — 让智慧穿越时空
             </footer>
           </div>
@@ -299,10 +299,10 @@ export default function CyberPhilosopherPage() {
           transition={{ duration: 0.3 }}
         >
           {/* Top bar */}
-          <header className="fixed left-0 right-0 top-0 z-20 flex items-center gap-3 border-b border-white/[0.06] bg-bg-card/85 px-4 py-3 backdrop-blur-2xl sm:px-6">
+          <header className="fixed left-0 right-0 top-0 z-20 flex items-center gap-3 border-b border-white/[0.10] bg-bg-card/[0.88] px-4 py-3 backdrop-blur-2xl sm:px-6">
             <button
               onClick={goHome}
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.03] text-text-muted transition-all duration-200 hover:border-white/[0.12] hover:text-text-primary active:scale-95"
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.10] bg-white/[0.055] text-text-secondary/80 transition-all duration-200 hover:border-white/[0.16] hover:text-text-primary active:scale-95"
               aria-label="返回"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -330,7 +330,7 @@ export default function CyberPhilosopherPage() {
 
             <button
               onClick={() => setShowModal(true)}
-              className={`shrink-0 rounded-full border px-3.5 py-1.5 text-[11px] font-medium transition-all duration-300 active:scale-95 ${borderColor} ${master.tagBg} ${accentColor}/90 hover:bg-white/[0.08]`}
+              className={`shrink-0 rounded-lg border px-3.5 py-1.5 text-[11px] font-medium transition-all duration-300 active:scale-95 ${borderColor} ${master.tagBg} ${accentColor}/90 hover:bg-white/[0.08]`}
             >
               解锁全部
             </button>
@@ -408,7 +408,7 @@ export default function CyberPhilosopherPage() {
               <div className="my-4 flex justify-center">
                 <button
                   onClick={() => setShowModal(true)}
-                  className="group flex items-center gap-2 rounded-full border border-accent-primary/20 bg-accent-primary/8 px-5 py-2.5 text-sm font-medium text-accent-primary/90 transition-all duration-300 hover:border-accent-primary/30 hover:bg-accent-primary/15 hover:shadow-[0_0_30px_rgba(168,134,68,0.08)]"
+                  className="group flex items-center gap-2 rounded-lg border border-accent-primary/30 bg-accent-primary/[0.12] px-5 py-2.5 text-sm font-medium text-accent-secondary transition-all duration-300 hover:border-accent-secondary/45 hover:bg-accent-primary/[0.18] hover:shadow-[0_0_30px_var(--accent-glow)]"
                 >
                   <span>🔓</span>
                   <span>解锁深度疗愈对话</span>
@@ -419,8 +419,8 @@ export default function CyberPhilosopherPage() {
           </div>
 
           {/* Input */}
-          <div className="fixed bottom-0 left-0 right-0 z-20 border-t border-white/[0.04] bg-gradient-to-t from-bg-primary via-bg-primary to-transparent px-4 pb-5 pt-3 sm:px-6">
-            <p className="mx-auto mb-2 max-w-3xl text-center text-[10px] leading-relaxed text-text-muted/35">
+          <div className="fixed bottom-0 left-0 right-0 z-20 border-t border-white/[0.10] bg-gradient-to-t from-bg-primary via-bg-primary to-transparent px-4 pb-5 pt-3 sm:px-6">
+            <p className="mx-auto mb-2 max-w-3xl text-center text-[10px] leading-relaxed text-text-muted/70">
               若你正处于危机或有伤害自己的想法，请立即联系身边的人或当地紧急救助服务。
             </p>
             <form
@@ -438,13 +438,13 @@ export default function CyberPhilosopherPage() {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="说说你的心事…"
                   disabled={isSending}
-                  className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.03] px-5 py-3.5 text-sm text-text-primary placeholder:text-text-muted/50 outline-none transition-all duration-300 focus:border-accent-primary/40 focus:bg-white/[0.05] disabled:opacity-50"
+                  className="w-full rounded-lg border border-white/[0.12] bg-white/[0.055] px-5 py-3.5 text-sm text-text-primary placeholder:text-text-muted/70 outline-none transition-all duration-300 focus:border-accent-primary/45 focus:bg-white/[0.08] disabled:opacity-50"
                 />
               </div>
               <button
                 type="submit"
                 disabled={!input.trim() || isSending}
-                className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-accent-primary to-accent-secondary text-bg-primary shadow-lg shadow-accent-primary/20 transition-all duration-300 hover:shadow-accent-primary/30 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+                className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-accent-primary to-accent-secondary text-bg-primary shadow-lg shadow-accent-primary/20 transition-all duration-300 hover:shadow-accent-primary/30 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 2L11 13" />
@@ -468,7 +468,7 @@ export default function CyberPhilosopherPage() {
             onClick={() => setShowModal(false)}
           >
             <motion.div
-              className="w-full max-w-sm rounded-3xl border border-white/[0.08] bg-bg-card/95 p-8 shadow-2xl backdrop-blur-2xl"
+              className="w-full max-w-sm rounded-lg border border-white/[0.12] bg-bg-card/95 p-8 shadow-2xl backdrop-blur-2xl"
               initial={{ scale: 0.92, y: 16, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.92, y: 16, opacity: 0 }}
@@ -494,7 +494,7 @@ export default function CyberPhilosopherPage() {
                   (item) => (
                     <li
                       key={item}
-                      className="flex items-center gap-3 rounded-xl bg-white/[0.03] px-4 py-3 text-sm text-text-secondary/90"
+                      className="flex items-center gap-3 rounded-lg bg-white/[0.055] px-4 py-3 text-sm text-text-secondary/90"
                     >
                       <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-primary/10 text-xs text-accent-primary">
                         ✦
@@ -507,14 +507,14 @@ export default function CyberPhilosopherPage() {
 
               <button
                 onClick={() => setShowModal(false)}
-                className="btn-shine mt-8 w-full rounded-2xl bg-gradient-to-br from-accent-primary to-accent-secondary px-6 py-4 text-base font-bold text-bg-primary shadow-xl shadow-accent-primary/20 transition-all duration-300 hover:shadow-accent-primary/30 active:scale-[0.98]"
+                className="btn-shine mt-8 w-full rounded-lg bg-gradient-to-br from-accent-primary to-accent-secondary px-6 py-4 text-base font-bold text-bg-primary shadow-xl shadow-accent-primary/20 transition-all duration-300 hover:shadow-accent-primary/30 active:scale-[0.98]"
               >
                 获取完整权限
               </button>
 
               <button
                 onClick={() => setShowModal(false)}
-                className="mt-4 w-full text-center text-xs text-text-muted/50 transition-colors hover:text-text-muted/80"
+                className="mt-4 w-full text-center text-xs text-text-muted/75 transition-colors hover:text-text-muted"
               >
                 再看看
               </button>

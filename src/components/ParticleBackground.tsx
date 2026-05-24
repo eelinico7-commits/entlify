@@ -34,8 +34,8 @@ function ParticlesMesh() {
     const count = isMobile ? 500 : 2000;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
-    const colorA = new THREE.Color("#a88644");
-    const colorB = new THREE.Color("#c9b578");
+    const colorA = new THREE.Color("#d6aa57");
+    const colorB = new THREE.Color("#84aee6");
 
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
@@ -79,10 +79,10 @@ function ParticlesMesh() {
   return (
     <Points ref={pointsRef} positions={positions} colors={colors}>
       <PointMaterial
-        size={0.05}
+        size={0.042}
         vertexColors
         transparent
-        opacity={0.35}
+        opacity={0.22}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}

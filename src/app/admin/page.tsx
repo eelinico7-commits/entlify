@@ -56,8 +56,8 @@ export default function AdminPage() {
   if (!authenticated) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-bg-primary p-6">
-        <div className="w-full max-w-sm rounded-2xl border border-white/[0.06] bg-bg-card p-8 shadow-card">
-          <h1 className="mb-2 text-xl font-semibold tracking-tight text-text-primary">
+        <div className="w-full max-w-sm rounded-lg border border-white/[0.10] bg-bg-card p-8 shadow-card">
+          <h1 className="mb-2 text-xl font-semibold tracking-normal text-text-primary">
             留言管理
           </h1>
           <p className="mb-6 text-sm text-text-secondary">请输入管理员密码</p>
@@ -68,7 +68,7 @@ export default function AdminPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="密码"
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-text-primary placeholder:text-text-muted outline-none transition-all duration-300 focus:border-accent-primary/50 focus:bg-white/[0.05]"
+              className="w-full rounded-lg border border-white/[0.12] bg-white/[0.055] px-4 py-3 text-sm text-text-primary placeholder:text-text-muted outline-none transition-all duration-300 focus:border-accent-primary/50 focus:bg-white/[0.08]"
               autoFocus
             />
             {passwordError && (
@@ -76,7 +76,7 @@ export default function AdminPage() {
             )}
             <button
               type="submit"
-              className="w-full rounded-xl border border-accent-primary/20 bg-gradient-to-b from-accent-primary/15 to-accent-primary/5 px-6 py-3 text-sm font-medium text-accent-secondary transition-all duration-300 hover:border-accent-primary/40 hover:from-accent-primary/25 hover:to-accent-primary/10"
+              className="w-full rounded-lg border border-accent-primary/35 bg-gradient-to-b from-accent-primary/[0.18] to-accent-primary/[0.08] px-6 py-3 text-sm font-medium text-accent-secondary transition-all duration-300 hover:border-accent-primary/50 hover:from-accent-primary/[0.26] hover:to-accent-primary/[0.12]"
             >
               验证
             </button>
@@ -88,7 +88,7 @@ export default function AdminPage() {
 
   return (
     <main className="min-h-screen bg-bg-primary p-6 text-text-primary sm:p-10">
-      <h1 className="mb-2 text-2xl font-semibold tracking-tight">留言管理</h1>
+      <h1 className="mb-2 text-2xl font-semibold tracking-normal">留言管理</h1>
       <p className="mb-8 text-sm text-text-secondary">
         共 {messages.length} 条留言
       </p>
@@ -102,7 +102,7 @@ export default function AdminPage() {
           {messages.map((msg) => (
             <div
               key={msg.id}
-              className="rounded-xl border border-white/[0.06] bg-bg-card p-5"
+              className="rounded-lg border border-white/[0.10] bg-bg-card p-5"
             >
               <div className="mb-1 flex items-center justify-between">
                 <span className="text-sm font-medium">{msg.name}</span>

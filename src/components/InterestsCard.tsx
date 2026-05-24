@@ -54,7 +54,7 @@ export default function InterestsCard() {
       {/* Title */}
       <div className="mb-6 flex items-center gap-3">
         <span className="text-xl">📂</span>
-        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted">
+        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted/90">
           内容坐标
         </h3>
       </div>
@@ -70,7 +70,7 @@ export default function InterestsCard() {
         {categories.map((item) => (
           <motion.div
             key={item.title}
-            className={`group/item relative overflow-hidden rounded-2xl bg-gradient-to-br ${item.gradient} p-4 transition-all duration-300 ease-in-out hover:bg-bg-secondary/60`}
+            className={`group/item relative overflow-hidden rounded-lg border border-white/[0.08] bg-gradient-to-br ${item.gradient} p-4 transition-all duration-300 ease-in-out hover:border-accent-primary/30 hover:bg-bg-secondary/70`}
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
           >
@@ -93,7 +93,7 @@ export default function InterestsCard() {
       </motion.div>
 
       {/* Footer */}
-      <div className="mt-5 border-t border-white/[0.04] pt-4 text-center text-xs text-text-muted/40">
+      <div className="mt-5 border-t border-white/[0.10] pt-4 text-center text-xs text-text-muted/75">
         <span className="text-gradient-warm">从 AI 到成长，记录每一次破局</span>
       </div>
     </Card>

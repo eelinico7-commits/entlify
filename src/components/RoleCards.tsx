@@ -65,10 +65,10 @@ export default function RoleCards() {
       {/* Header */}
       <div className="mb-6 flex items-center gap-3">
         <span className="text-xl">⚡</span>
-        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted">
+        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted/90">
           能力系统
         </h3>
-        <div className="ml-2 h-px flex-1 bg-white/[0.04]" />
+        <div className="ml-2 h-px flex-1 bg-white/[0.10]" />
       </div>
 
       <motion.div
@@ -81,7 +81,7 @@ export default function RoleCards() {
         {capabilities.map((cap) => (
           <motion.div
             key={cap.index}
-            className="group relative overflow-hidden rounded-2xl bg-bg-secondary/40 p-5 transition-all duration-300 hover:border hover:border-white/[0.08] hover:bg-bg-secondary/70"
+            className="group relative overflow-hidden rounded-lg border border-white/[0.08] bg-bg-secondary/55 p-5 transition-all duration-300 hover:border-accent-primary/30 hover:bg-bg-secondary/85"
             variants={itemVariants}
             whileHover={{ y: -3, scale: 1.01 }}
           >
@@ -91,14 +91,14 @@ export default function RoleCards() {
             <div className="relative">
               {/* Index + title */}
               <div className="mb-3 flex items-start justify-between">
-                <span className="font-mono text-[10px] tracking-widest text-accent-primary/40">
+                <span className="font-mono text-[10px] tracking-widest text-accent-secondary/75">
                   {cap.index} {"//"} {cap.title}
                 </span>
                 <span className="text-lg">{cap.emoji}</span>
               </div>
 
               {/* Subtitle */}
-              <p className="mb-2 text-xs font-medium text-accent-primary/70">
+              <p className="mb-2 text-xs font-medium text-accent-secondary/90">
                 {cap.subtitle}
               </p>
 
@@ -112,7 +112,7 @@ export default function RoleCards() {
                 {cap.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] text-text-muted transition-colors duration-200 group-hover:border-accent-primary/20 group-hover:text-accent-primary/60"
+                    className="rounded-md border border-white/[0.10] bg-white/[0.045] px-2 py-0.5 font-mono text-[10px] text-text-secondary/85 transition-colors duration-200 group-hover:border-accent-primary/35 group-hover:text-accent-secondary"
                   >
                     {tag}
                   </span>

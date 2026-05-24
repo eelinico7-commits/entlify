@@ -25,14 +25,14 @@ export default function NavBar() {
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-white/[0.05] bg-black/60 shadow-[0_4px_30px_rgba(0,0,0,0.3)] backdrop-blur-2xl"
-          : "bg-transparent"
+          ? "border-b border-white/[0.10] bg-bg-primary/[0.82] shadow-[0_12px_42px_rgba(0,0,0,0.38)] backdrop-blur-2xl"
+          : "border-b border-white/[0.04] bg-bg-primary/20 backdrop-blur-sm"
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-10 sm:py-4">
         <a
           href="#hero"
-          className="shrink-0 text-sm font-semibold tracking-wide text-text-primary transition-colors hover:text-accent-primary"
+          className="shrink-0 text-sm font-semibold tracking-wide text-text-primary transition-colors hover:text-accent-secondary"
         >
           杨存邦
         </a>
@@ -41,7 +41,7 @@ export default function NavBar() {
             <li key={item.href}>
               <a
                 href={item.href}
-                className="font-mono text-[9px] tracking-[0.15em] text-text-muted transition-colors duration-300 hover:text-accent-primary uppercase sm:text-[10px]"
+                className="font-mono text-[9px] tracking-[0.14em] text-text-secondary/80 transition-colors duration-300 hover:text-accent-secondary uppercase sm:text-[10px]"
               >
                 {item.label}
               </a>
