@@ -25,8 +25,8 @@ export default function NavBar() {
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-white/[0.10] bg-bg-primary/[0.82] shadow-[0_12px_42px_rgba(0,0,0,0.38)] backdrop-blur-2xl"
-          : "border-b border-white/[0.04] bg-bg-primary/20 backdrop-blur-sm"
+          ? "border-b border-black/[0.08] bg-bg-primary/[0.88] shadow-[0_12px_36px_rgba(86,65,41,0.08)] backdrop-blur-2xl"
+          : "border-b border-black/[0.04] bg-bg-primary/55 backdrop-blur-sm"
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-10 sm:py-4">
@@ -41,7 +41,7 @@ export default function NavBar() {
             <li key={item.href}>
               <a
                 href={item.href}
-                className="font-mono text-[9px] tracking-[0.14em] text-text-secondary/80 transition-colors duration-300 hover:text-accent-secondary uppercase sm:text-[10px]"
+              className="text-[13px] tracking-[0.03em] text-text-secondary/85 transition-colors duration-300 hover:text-text-primary uppercase sm:text-sm"
               >
                 {item.label}
               </a>

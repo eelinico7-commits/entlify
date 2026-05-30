@@ -13,22 +13,22 @@ const toolGroups: SkillGroup[] = [
   {
     icon: "🤖",
     title: "AIGC",
-    skills: ["API 工程", "Prompt Engineering", "Agent 开发"],
+    skills: ["Prompt 优化", "API 接入", "智能体开发"],
   },
   {
     icon: "💻",
-    title: "全栈",
-    skills: ["HTML / CSS", "Trae", "Agent 架构"],
+    title: "产品实践",
+    skills: ["Claude Code", "网站搭建", "Canvas 小游戏"],
   },
   {
     icon: "🎬",
-    title: "媒体创作",
-    skills: ["视频剪辑", "内容策划"],
+    title: "内容创作",
+    skills: ["校园选题", "视频剪辑", "IP 运营"],
   },
   {
     icon: "🧠",
-    title: "知识管理",
-    skills: ["Obsidian", "Zettelkasten 卡片笔记"],
+    title: "校园实践",
+    skills: ["社群运营", "资源拓展", "线下推广"],
   },
 ];
 
@@ -51,18 +51,18 @@ const itemVariants = {
 
 export default function SkillsCard() {
   return (
-    <div className="flex h-full flex-col p-6 sm:p-8">
+    <div className="flex h-full flex-col p-7 sm:p-12">
       {/* Header */}
       <div className="mb-6 flex items-center gap-3">
-        <span className="text-xl">🛠️</span>
-        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted/90">
-          工具栈
+        <span className="font-mono text-xs tracking-[0.12em] text-text-muted">STACK</span>
+        <h3 className="text-sm font-medium tracking-[0.08em] uppercase text-text-muted/90">
+          技能标签
         </h3>
       </div>
 
       {/* Tools grid */}
       <motion.div
-        className="grid grid-cols-2 gap-3"
+        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -71,17 +71,16 @@ export default function SkillsCard() {
         {toolGroups.map((group) => (
           <motion.div
             key={group.title}
-            className="group relative overflow-hidden rounded-lg border border-white/[0.08] bg-bg-secondary/55 p-4 transition-all duration-300 hover:border-accent-primary/30 hover:bg-bg-secondary/85"
+            className="group relative overflow-hidden rounded-lg border border-black/[0.07] bg-bg-card p-5 shadow-card transition-all duration-[280ms] ease-out hover:-translate-y-1.5 hover:border-accent-primary/25 hover:bg-[#fffaf2] hover:shadow-[0_20px_48px_rgba(64,52,39,0.11)]"
             variants={itemVariants}
-            whileHover={{ scale: 1.03, y: -2 }}
           >
             {/* Decorative dot */}
-            <div className="absolute -right-4 -top-4 h-8 w-8 rounded-full bg-accent-primary/[0.03] blur-lg transition-all duration-500 group-hover:bg-accent-primary/[0.06]" />
+            <div className="absolute -right-4 -top-4 h-8 w-8 rounded-full bg-bg-secondary/70 blur-lg transition-all duration-500" />
 
             <div className="relative">
               <div className="mb-2 flex items-center gap-1.5">
-                <span className="text-lg">{group.icon}</span>
-                <span className="text-sm font-semibold text-text-primary">
+                <span className="text-lg transition-transform duration-[280ms] ease-out group-hover:-translate-y-0.5">{group.icon}</span>
+                <span className="text-xl font-semibold leading-[1.35] text-text-primary">
                   {group.title}
                 </span>
               </div>
@@ -90,7 +89,7 @@ export default function SkillsCard() {
                 {group.skills.map((skill) => (
                   <li
                     key={skill}
-                    className="flex items-center gap-1.5 text-xs text-text-secondary"
+                    className="flex items-center gap-1.5 text-sm leading-[1.8] text-text-secondary"
                   >
                     <span className="inline-block h-1 w-1 rounded-full bg-accent-primary/50" />
                     {skill}

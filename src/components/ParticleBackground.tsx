@@ -31,11 +31,11 @@ function ParticlesMesh() {
 
   const [positions, colors] = useMemo(() => {
     const isMobile = typeof window !== "undefined" && /Mobi|Android/i.test(navigator.userAgent);
-    const count = isMobile ? 500 : 2000;
+    const count = isMobile ? 120 : 420;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
-    const colorA = new THREE.Color("#d6aa57");
-    const colorB = new THREE.Color("#84aee6");
+    const colorA = new THREE.Color("#b9783f");
+    const colorB = new THREE.Color("#697f9f");
 
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
@@ -82,7 +82,7 @@ function ParticlesMesh() {
         size={0.042}
         vertexColors
         transparent
-        opacity={0.22}
+        opacity={0.08}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}

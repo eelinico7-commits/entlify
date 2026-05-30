@@ -13,10 +13,10 @@ interface MetricItem {
 }
 
 const metrics: MetricItem[] = [
-  { value: "1500+", numeric: 1500, suffix: "+", label: "1500", sublabel: "社群成员" },
-  { value: "13", numeric: 13, suffix: "所", label: "13", sublabel: "覆盖高校" },
-  { value: "5.3W+", numeric: 5.3, suffix: "W+", label: "5.3W+", sublabel: "内容播放" },
-  { value: "12%", numeric: 12, suffix: "%", label: "12%", sublabel: "销售转化率" },
+  { value: "17", numeric: 17, suffix: "条", label: "17", sublabel: "抖音校园IP内容" },
+  { value: "8.9W+", numeric: 8.9, suffix: "W+", label: "8.9W+", sublabel: "抖音累计播放" },
+  { value: "18", numeric: 18, suffix: "篇", label: "18", sublabel: "小红书校园IP内容" },
+  { value: "1.9W+", numeric: 1.9, suffix: "W+", label: "1.9W+", sublabel: "小红书累计阅读" },
 ];
 
 const itemVariants = {
@@ -29,60 +29,41 @@ const itemVariants = {
   }),
 };
 
-const glowColors = [
-  "from-accent-green/30 via-accent-green/10 to-transparent",
-  "from-accent-primary/30 via-accent-primary/10 to-transparent",
-  "from-accent-blue/30 via-accent-blue/10 to-transparent",
-  "from-accent-warm/30 via-accent-warm/10 to-transparent",
-];
-
 export default function ImpactDashboard() {
   return (
     <motion.section
       id="metrics"
-      className="relative mx-auto mb-28 mt-10 max-w-5xl px-6 sm:px-10"
+      className="relative mx-auto mb-32 mt-0 max-w-6xl px-6 sm:px-10"
       variants={scrollReveal}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
       {/* Section label */}
-      <div className="mb-8 flex items-center gap-3">
-        <span className="font-mono text-[10px] tracking-[0.22em] text-accent-secondary/80 uppercase">
-          / 01
+      <div className="mb-10 flex items-center gap-3">
+        <span className="font-mono text-xs tracking-[0.12em] text-text-muted uppercase">
+          / RECORDS
         </span>
-        <div className="h-px flex-1 bg-gradient-to-r from-accent-primary/40 to-transparent" />
+        <div className="h-px flex-1 bg-gradient-to-r from-black/[0.10] to-transparent" />
       </div>
 
       {/* Achievement wall */}
-      <div className="relative">
-        {/* Background ambient glow */}
-        <div className="pointer-events-none absolute inset-0 rounded-lg bg-gradient-to-b from-accent-primary/[0.055] to-transparent blur-2xl" />
-
-        <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+      <div className="relative rounded-2xl border-y border-black/[0.08] bg-white/35 py-8">
+        <div className="relative grid grid-cols-2 gap-y-8 sm:grid-cols-4">
           {metrics.map((m, i) => (
             <motion.div
               key={m.label}
-              className="group relative overflow-hidden rounded-lg border border-white/[0.10] bg-gradient-to-b from-bg-card to-bg-card/75 p-5 shadow-card transition-all duration-500 hover:border-accent-primary/35 sm:p-6"
+              className="group relative px-5 sm:px-7"
               custom={i}
               variants={itemVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              whileHover={{ y: -6, scale: 1.02 }}
+              whileHover={{ y: -2 }}
             >
-              {/* Hover glow */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${glowColors[i]} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
-              />
-
-              {/* Corner decoration */}
-              <div className="absolute -right-8 -top-8 h-16 w-16 rounded-full bg-white/[0.03] blur-xl transition-all duration-500 group-hover:scale-150" />
-
-              {/* Content */}
-              <div className="relative">
+              <div className="relative border-l border-black/[0.08] pl-4 sm:pl-5">
                 {/* Big number */}
-                <p className="font-mono text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">
+                <p className="font-mono text-4xl font-semibold tracking-[-0.03em] text-text-primary sm:text-5xl">
                   {m.suffix === "%" || m.suffix === "W+" ? (
                     <>
                       <CountUp end={m.numeric} decimals={m.suffix === "W+" ? 1 : 0} />
@@ -104,13 +85,10 @@ export default function ImpactDashboard() {
                 </p>
 
                 {/* Label */}
-                <p className="mt-1.5 text-xs text-text-secondary/85 sm:text-sm">
+                <p className="mt-3 text-sm leading-[1.7] text-text-secondary/85">
                   {m.sublabel}
                 </p>
               </div>
-
-              {/* Bottom decorative line */}
-              <div className="absolute bottom-0 left-0 right-0 h-px scale-x-0 bg-gradient-to-r from-accent-primary/60 via-accent-primary/20 to-transparent transition-transform duration-500 group-hover:scale-x-100" />
             </motion.div>
           ))}
         </div>

@@ -16,7 +16,7 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <motion.div
-      className="mb-12 md:mb-16"
+      className="mb-16 md:mb-24"
       variants={scrollReveal}
       initial="hidden"
       whileInView="visible"
@@ -24,20 +24,20 @@ export default function SectionHeading({
     >
       {/* Section number */}
       <div className="mb-3 flex items-center gap-3">
-        <span className="font-mono text-[10px] tracking-[0.22em] text-accent-secondary/80 uppercase">
+        <span className="font-mono text-xs tracking-[0.12em] text-text-muted uppercase">
           / {number}
         </span>
-        <div className="h-px flex-1 bg-gradient-to-r from-accent-primary/40 to-transparent" />
+        <div className="h-px flex-1 bg-gradient-to-r from-black/[0.10] to-transparent" />
       </div>
 
       {/* Title */}
-      <h2 className="text-3xl font-bold tracking-normal text-text-primary sm:text-4xl md:text-5xl">
+      <h2 className="text-[2.25rem] font-semibold leading-[1.15] tracking-[-0.02em] text-text-primary sm:text-[2.75rem] md:text-5xl">
         {title}
       </h2>
 
       {/* Subtitle */}
       {subtitle && (
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-text-secondary/90 sm:text-base">
+        <p className="mt-6 max-w-2xl text-base leading-[1.85] text-text-secondary/85 sm:text-lg">
           {subtitle}
         </p>
       )}

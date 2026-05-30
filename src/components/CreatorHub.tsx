@@ -27,23 +27,23 @@ export default function CreatorHub() {
   const articles = notesData as NoteMeta[];
 
   return (
-    <div className="flex h-full flex-col p-6 sm:p-8">
+    <div className="flex h-full flex-col p-7 sm:p-12">
       {/* Title */}
       <div className="mb-4 flex items-center gap-3">
-        <span className="text-xl">📝</span>
-        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted/90">
+        <span className="font-mono text-xs tracking-[0.12em] text-text-muted">NOTES</span>
+        <h3 className="text-sm font-medium tracking-[0.08em] uppercase text-text-muted/90">
           破局日记
         </h3>
       </div>
 
       {/* Subtitle */}
-      <p className="mb-6 text-sm leading-relaxed text-text-secondary">
+      <p className="mb-10 text-base leading-[1.85] text-text-secondary">
         记录一个大学生用 AI、内容与项目实践不断升级自己的过程。
       </p>
 
       {/* Article cards */}
       <motion.div
-        className="flex flex-1 flex-col gap-3"
+        className="flex flex-1 flex-col gap-7"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -52,35 +52,34 @@ export default function CreatorHub() {
         {articles.map((article) => (
           <Link key={article.slug} href={`/notes/${article.slug}`}>
             <motion.div
-              className="group/article relative overflow-hidden rounded-lg border border-white/[0.08] bg-bg-secondary/65 p-5 backdrop-blur-sm transition-all duration-300 hover:border-accent-primary/30 hover:bg-bg-secondary/90"
+              className="group/article relative overflow-hidden rounded-lg border border-black/[0.07] bg-bg-card p-7 backdrop-blur-sm shadow-card transition-all duration-[280ms] ease-out hover:-translate-y-1.5 hover:border-accent-primary/25 hover:bg-[#fffaf2] hover:shadow-[0_20px_48px_rgba(64,52,39,0.11)]"
               variants={itemVariants}
-              whileHover={{ x: 4 }}
             >
               {/* Decorative glow */}
-              <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-accent-primary/5 blur-2xl transition-all duration-500 group-hover/article:bg-accent-primary/10" />
+              <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-bg-secondary/70 blur-2xl transition-all duration-500" />
 
               {/* Label row */}
               <div className="relative mb-2 flex items-center gap-2">
-                <span className="rounded-md border border-accent-primary/20 bg-accent-primary/[0.14] px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-accent-secondary/90">
+                <span className="rounded-full border border-black/[0.07] bg-bg-secondary/65 px-3 py-1 font-mono text-xs font-medium tracking-[0.08em] text-text-muted">
                   {article.category}
                 </span>
-                <span className="text-[10px] text-text-muted/80">
+                <span className="text-xs leading-[1.7] text-text-muted/80">
                   {article.date} · {article.readTime}
                 </span>
               </div>
 
               {/* Title */}
-              <h4 className="relative mb-2 text-sm font-semibold text-text-primary">
+              <h4 className="relative mb-3 text-xl font-semibold leading-[1.35] text-text-primary transition-colors duration-[280ms] ease-out group-hover/article:text-[#1f1f1f]">
                 {article.title}
               </h4>
 
               {/* Summary */}
-              <p className="relative text-xs leading-relaxed text-text-secondary/90">
+              <p className="relative text-sm leading-[1.75] text-text-secondary/90">
                 {article.summary}
               </p>
 
               {/* Read more */}
-              <div className="relative mt-2 flex items-center gap-1 text-xs font-medium text-text-muted/80 transition-all duration-300 group-hover/article:text-accent-secondary">
+              <div className="relative mt-5 flex items-center gap-1 text-sm font-medium text-text-muted/70 transition-all duration-[280ms] ease-out group-hover/article:translate-x-1 group-hover/article:text-text-primary">
                 阅读更多
                 <span className="inline-block transition-transform duration-300 group-hover/article:translate-x-1">
                   →

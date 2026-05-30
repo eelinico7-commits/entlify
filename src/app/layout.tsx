@@ -14,13 +14,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yangcunbang.icu"),
-  title: "杨存邦 | AIGC Developer & Explorer",
+  title: "杨存邦 | 医学生 & AI 内容实践者",
   description:
-    "杨存邦的个人作品集 —— AIGC开发者 / 美团AIGC俱乐部主席 / 新东方校园大使 / 极客与探索者",
+    "杨存邦的个人作品集 —— 一个医学生记录 AI 工具、校园 IP、社群运营与项目实践。",
   openGraph: {
-    title: "杨存邦 | AIGC Developer & Explorer",
+    title: "杨存邦 | 医学生 & AI 内容实践者",
     description:
-      "复合型人才 · 极客精神 · 商业思维 —— 从校园到领航者的成长轨迹",
+      "从医学学习、AI 工具到校园项目实践，一个大学生的成长记录与作品集。",
   },
 };
 
@@ -35,7 +35,7 @@ const jsonLd = {
   "@type": "Person",
   name: "杨存邦",
   alternateName: "Yang Cunbang",
-  description: "AIGC开发者 / 美团AIGC俱乐部主席 / 新东方校园大使 / 医学生",
+  description: "医学生 / AI内容创作者 / 校园项目实践者",
   url: "https://yangcunbang.icu",
 };
 

@@ -8,7 +8,7 @@ interface CardProps {
 export default function Card({ children, className = "" }: CardProps) {
   return (
     <div
-      className={`group flex h-full flex-col rounded-lg border border-white/[0.10] bg-gradient-to-b from-bg-card to-bg-card/85 p-8 shadow-card transition-all duration-500 ease-in-out hover:scale-[1.005] hover:border-accent-primary/30 hover:shadow-[0_0_70px_var(--accent-glow)] ${className}`}
+      className={`group flex h-full flex-col rounded-lg border border-black/[0.07] bg-bg-card p-7 shadow-card transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-accent-primary/20 hover:shadow-card-hover sm:p-10 ${className}`}
     >
       {children}
     </div>

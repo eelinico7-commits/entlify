@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import NavBar from "@/components/NavBar";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Hero from "@/components/Hero";
@@ -8,11 +7,6 @@ import ImpactDashboard from "@/components/ImpactDashboard";
 import BentoGrid from "@/components/BentoGrid";
 import Guestbook from "@/components/Guestbook";
 import Footer from "@/components/Footer";
-
-const ParticleBackground = dynamic(
-  () => import("@/components/ParticleBackground"),
-  { ssr: false }
-);
 
 export default function Home() {
   return (
@@ -23,9 +17,6 @@ export default function Home() {
       {/* Navigation */}
       <NavBar />
 
-      {/* Interactive Particle Background */}
-      <ParticleBackground />
-
       {/* Content Layer */}
       <div className="relative z-10">
         {/* Hero Section — full viewport height */}
@@ -33,7 +24,7 @@ export default function Home() {
           <Hero />
         </section>
 
-        {/* Metrics — 数据成就条 */}
+        {/* Metrics — light records after the intro */}
         <ImpactDashboard />
 
         {/* Main content hub — BentoGrid handles its own sections */}

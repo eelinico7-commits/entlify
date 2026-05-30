@@ -6,39 +6,39 @@ import { smoothEasing } from "@/lib/animations";
 const capabilities = [
   {
     index: "01",
-    title: "商业社群统筹",
-    emoji: "🚀",
-    subtitle: "美团AIGC俱乐部 · 主席",
+    title: "项目推进",
+    emoji: "01",
+    subtitle: "把想法拆成可以执行的小步骤",
     description:
-      "聚焦 AIGC 技术应用，带队探索 Agent 搭建与落地场景，统筹社群运营与活动策划，推动 AI 技术在校园的普及。",
-    tags: ["AIGC 应用", "Agent 搭建", "社群运营", "活动策划"],
+      "做过 AI No-code 校园社群，也在练习把资源、活动和内容串起来。",
+    tags: ["社群运营", "资源链接", "执行复盘"],
   },
   {
     index: "02",
-    title: "校园销售转化",
-    emoji: "📚",
-    subtitle: "新东方 · 校园大使",
+    title: "内容表达",
+    emoji: "02",
+    subtitle: "把校园观察写成可传播的内容",
     description:
-      "负责校园市场推广与品牌活动执行，销售转化率持续保持在 25%–40%，积累了扎实的商务拓展与用户运营经验。",
-    tags: ["销售转化 25%-40%", "校园推广", "品牌运营", "商务拓展"],
+      "围绕校园信息差、大学生成长和 AI 实战做内容创作，在抖音与小红书持续测试选题、表达和转化链路。",
+    tags: ["选题", "剪辑", "复盘"],
   },
   {
     index: "03",
-    title: "自媒体与商业闭环",
-    emoji: "🔄",
-    subtitle: "破局日记 · 主理人",
+    title: "真实沟通",
+    emoji: "03",
+    subtitle: "在具体场景里理解用户需求",
     description:
-      '在浪尖儿社群中深耕自媒体、AI与销售，打通「技术赋能-内容引流-私域转化」的核心闭环，实现双线增长。',
-    tags: ["自媒体运营", "内容引流", "私域转化", "双线增长"],
+      "做过 DIY 电脑配置服务和校园推广，学会把复杂信息翻译成别人听得懂的选择。",
+    tags: ["用户沟通", "场景表达", "转化意识"],
   },
   {
     index: "04",
-    title: "AIGC全栈开发落地",
-    emoji: "⚡",
-    subtitle: "独立开发者",
+    title: "AI 工具",
+    emoji: "04",
+    subtitle: "把工具变成自己的工作流",
     description:
-      "基于 Prompt 工程使用 Claude Code 替代传统手写开发，独立产出高审美简历网站与交互式飞机大战小游戏。",
-    tags: ["Claude Code", "DeepSeek API", "Gemini", "Obsidian", "智能体开发"],
+      "用 Claude Code、DeepSeek、Gemini 和 Obsidian 辅助写作、开发、整理知识。",
+    tags: ["Claude Code", "DeepSeek", "Obsidian"],
   },
 ];
 
@@ -61,18 +61,18 @@ const itemVariants = {
 
 export default function RoleCards() {
   return (
-    <div className="flex h-full flex-col p-6 sm:p-8">
+    <div className="flex h-full flex-col p-7 sm:p-12">
       {/* Header */}
       <div className="mb-6 flex items-center gap-3">
-        <span className="text-xl">⚡</span>
-        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted/90">
-          能力系统
+        <span className="font-mono text-xs tracking-[0.12em] text-text-muted">TOOLS</span>
+        <h3 className="text-sm font-medium tracking-[0.08em] uppercase text-text-muted/90">
+          常用能力
         </h3>
-        <div className="ml-2 h-px flex-1 bg-white/[0.10]" />
+        <div className="ml-2 h-px flex-1 bg-black/[0.08]" />
       </div>
 
       <motion.div
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+        className="grid grid-cols-1 gap-5 sm:grid-cols-2"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -81,29 +81,30 @@ export default function RoleCards() {
         {capabilities.map((cap) => (
           <motion.div
             key={cap.index}
-            className="group relative overflow-hidden rounded-lg border border-white/[0.08] bg-bg-secondary/55 p-5 transition-all duration-300 hover:border-accent-primary/30 hover:bg-bg-secondary/85"
+            className="group relative overflow-hidden rounded-lg border border-black/[0.07] bg-bg-card p-7 shadow-card transition-all duration-[280ms] ease-out hover:-translate-y-1.5 hover:border-accent-primary/25 hover:bg-[#fffaf2] hover:shadow-[0_20px_48px_rgba(64,52,39,0.11)]"
             variants={itemVariants}
-            whileHover={{ y: -3, scale: 1.01 }}
           >
             {/* Decorative corner */}
-            <div className="absolute -right-6 -top-6 h-12 w-12 rounded-full bg-accent-primary/[0.04] blur-xl transition-all duration-500 group-hover:bg-accent-primary/[0.08]" />
+            <div className="absolute -right-6 -top-6 h-12 w-12 rounded-full bg-bg-secondary/70 blur-xl transition-all duration-500" />
 
             <div className="relative">
               {/* Index + title */}
               <div className="mb-3 flex items-start justify-between">
-                <span className="font-mono text-[10px] tracking-widest text-accent-secondary/75">
-                  {cap.index} {"//"} {cap.title}
+                <span className="font-mono text-xs tracking-[0.12em] text-text-muted">
+                  {cap.title}
                 </span>
-                <span className="text-lg">{cap.emoji}</span>
+                <span className="font-mono text-xs text-text-muted transition-colors duration-[280ms] ease-out group-hover:text-accent-secondary">
+                  {cap.emoji}
+                </span>
               </div>
 
               {/* Subtitle */}
-              <p className="mb-2 text-xs font-medium text-accent-secondary/90">
+              <p className="mb-3 text-sm leading-[1.7] text-accent-secondary/90">
                 {cap.subtitle}
               </p>
 
               {/* Description */}
-              <p className="mb-4 text-sm leading-relaxed text-text-secondary/80">
+              <p className="mb-7 text-base leading-[1.85] text-text-secondary/85">
                 {cap.description}
               </p>
 
@@ -112,7 +113,7 @@ export default function RoleCards() {
                 {cap.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-md border border-white/[0.10] bg-white/[0.045] px-2 py-0.5 font-mono text-[10px] text-text-secondary/85 transition-colors duration-200 group-hover:border-accent-primary/35 group-hover:text-accent-secondary"
+                    className="rounded-full border border-black/[0.07] bg-white/70 px-3 py-1 font-mono text-xs tracking-[0.08em] text-text-secondary/80 transition-colors duration-[280ms] ease-out group-hover:border-accent-primary/35 group-hover:bg-white"
                   >
                     {tag}
                   </span>

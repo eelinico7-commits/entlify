@@ -40,7 +40,7 @@ export default function BentoGrid() {
           ======================================== */}
       <motion.div
         id="projects"
-        className="mb-24"
+        className="mb-28 md:mb-40"
         variants={scrollReveal}
         initial="hidden"
         whileInView="visible"
@@ -48,8 +48,8 @@ export default function BentoGrid() {
       >
         <SectionHeading
           number="02"
-          title="主推项目"
-          subtitle="当前重点打造的项目，融合 AI 与医学人文视角"
+          title="作品"
+          subtitle="一些已经做出来、还在继续迭代的项目和内容实验。"
         />
 
         {/* 赛博先哲 — 主推大卡片 */}
@@ -66,7 +66,7 @@ export default function BentoGrid() {
           ======================================== */}
       <motion.div
         id="journey"
-        className="mb-24"
+        className="mb-28 md:mb-40"
         variants={scrollReveal}
         initial="hidden"
         whileInView="visible"
@@ -74,8 +74,8 @@ export default function BentoGrid() {
       >
         <SectionHeading
           number="03"
-          title="经历 & 轨迹"
-          subtitle="从医学生到 AI 探索者的成长路径"
+          title="关于我"
+          subtitle="比起罗列经历，我更想记录自己如何把想法做成东西。"
         />
 
         <div className="card-glow rounded-lg">
@@ -88,7 +88,7 @@ export default function BentoGrid() {
           ======================================== */}
       <motion.section
         id="capability"
-        className="mb-24"
+        className="mb-28 md:mb-40"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
@@ -96,12 +96,12 @@ export default function BentoGrid() {
       >
         <SectionHeading
           number="04"
-          title="能力系统 & 工具栈"
-          subtitle="跨学科能力矩阵 —— 从商业运营到技术落地"
+          title="我正在形成的能力"
+          subtitle="不做能力清单，只保留和作品有关的几件事。"
         />
 
         <motion.div
-          className="grid grid-cols-1 gap-6 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-8 lg:grid-cols-3"
           variants={sectionVariants}
         >
           {/* 能力系统 — 2 cols */}
@@ -124,7 +124,7 @@ export default function BentoGrid() {
           ======================================== */}
       <motion.section
         id="blog"
-        className="mb-24"
+        className="mb-28 md:mb-40"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
@@ -133,11 +133,11 @@ export default function BentoGrid() {
         <SectionHeading
           number="05"
           title="破局日记"
-          subtitle="记录一个大学生用 AI、内容和项目实践升级自己的过程。"
+          subtitle="一些关于 AI、内容和项目实践的短记录。"
         />
 
         <motion.div
-          className="grid grid-cols-1 gap-6 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-8 lg:grid-cols-3"
           variants={sectionVariants}
         >
           {/* 日记主区域 — 3 篇文章 */}

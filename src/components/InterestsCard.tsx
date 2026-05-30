@@ -8,26 +8,26 @@ const categories = [
   {
     icon: "🤖",
     title: "AI 工具实战",
-    description: "AI 工具使用技巧、AI 工作流搭建、AI 项目实践经验分享。",
-    gradient: "from-accent-primary/[0.08] to-accent-secondary/[0.04]",
+    description: "Claude Code、DeepSeek、Gemini、智能体开发与日常工作流复盘。",
+    gradient: "from-white to-bg-secondary/55",
   },
   {
     icon: "🌱",
     title: "学生成长路径",
-    description: "高考后、准大一、大学生活、信息差和成长选择，记录每一步破局。",
-    gradient: "from-accent-warm/[0.08] to-accent-gold/[0.04]",
+    description: "从预防医学本科到 AI 项目实践者，记录每一步真实试错。",
+    gradient: "from-white to-bg-secondary/55",
   },
   {
     icon: "🎯",
-    title: "个人IP定位",
-    description: "AI 自媒体号与高三/准大一号的双线定位，个人品牌建设思考。",
-    gradient: "from-accent-blue/[0.08] to-accent-primary/[0.04]",
+    title: "校园IP定位",
+    description: "围绕校园信息差、大学生成长和个人 IP 的内容选题实验。",
+    gradient: "from-white to-bg-secondary/55",
   },
   {
     icon: "⚡",
     title: "项目实践复盘",
-    description: "从零到一的项目经验复盘，技术选型、卡点解决与交付思考。",
-    gradient: "from-accent-gold/[0.08] to-accent-primary/[0.04]",
+    description: "社群拓展、商业转化、作品集搭建和小游戏开发的复盘。",
+    gradient: "from-white to-bg-secondary/55",
   },
 ];
 
@@ -54,7 +54,7 @@ export default function InterestsCard() {
       {/* Title */}
       <div className="mb-6 flex items-center gap-3">
         <span className="text-xl">📂</span>
-        <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted/90">
+        <h3 className="text-sm font-medium tracking-[0.08em] uppercase text-text-muted/90">
           内容坐标
         </h3>
       </div>
@@ -70,20 +70,20 @@ export default function InterestsCard() {
         {categories.map((item) => (
           <motion.div
             key={item.title}
-            className={`group/item relative overflow-hidden rounded-lg border border-white/[0.08] bg-gradient-to-br ${item.gradient} p-4 transition-all duration-300 ease-in-out hover:border-accent-primary/30 hover:bg-bg-secondary/70`}
+            className={`group/item relative overflow-hidden rounded-lg border border-black/[0.07] bg-gradient-to-br ${item.gradient} p-6 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-accent-primary/20 hover:bg-bg-card hover:shadow-card-hover`}
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
           >
             {/* Decorative glow */}
-            <div className="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-accent-primary/[0.04] blur-xl transition-all duration-500 group-hover/item:bg-accent-primary/[0.08]" />
+            <div className="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-bg-secondary/70 blur-xl transition-all duration-500" />
 
             <div className="relative flex items-start gap-3">
               <span className="mt-0.5 text-xl">{item.icon}</span>
               <div>
-                <h4 className="text-sm font-semibold text-text-primary">
+                <h4 className="text-xl font-semibold leading-[1.35] text-text-primary">
                   {item.title}
                 </h4>
-                <p className="mt-0.5 text-xs leading-relaxed text-text-secondary">
+                <p className="mt-3 text-sm leading-[1.75] text-text-secondary">
                   {item.description}
                 </p>
               </div>
@@ -93,8 +93,8 @@ export default function InterestsCard() {
       </motion.div>
 
       {/* Footer */}
-      <div className="mt-5 border-t border-white/[0.10] pt-4 text-center text-xs text-text-muted/75">
-        <span className="text-gradient-warm">从 AI 到成长，记录每一次破局</span>
+      <div className="mt-6 border-t border-black/[0.08] pt-4 text-center text-xs text-text-muted/75">
+        <span>从 AI 到成长，记录每一次破局</span>
       </div>
     </Card>
   );

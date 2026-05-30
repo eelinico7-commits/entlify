@@ -163,7 +163,7 @@ export default function GameCard() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(168, 134, 68, ${p.alpha})`;
+        ctx.fillStyle = `rgba(112, 90, 69, ${p.alpha * 0.45})`;
         ctx.fill();
       }
 
@@ -239,7 +239,7 @@ export default function GameCard() {
     gs.lastSpawn = 0;
     gs.running = true;
 
-    // Generate starfield
+    // Generate subtle paper dots
     starsRef.current = Array.from({ length: STAR_COUNT }, () => ({
       x: Math.random() * vw,
       y: Math.random() * vh,
@@ -342,43 +342,58 @@ export default function GameCard() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       // Background fill
-      ctx.fillStyle = "#0a0a0f";
+      ctx.fillStyle = "#fbf8f1";
       ctx.fillRect(0, 0, w, h);
 
-      // Subtle purple vignette
+      // Warm paper-like surface
       const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.6);
-      grad.addColorStop(0, "rgba(30, 20, 60, 0.25)");
-      grad.addColorStop(1, "rgba(10, 10, 15, 0)");
+      grad.addColorStop(0, "rgba(255, 253, 248, 0.9)");
+      grad.addColorStop(1, "rgba(245, 239, 229, 0)");
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, w, h);
 
-      // Starfield
+      ctx.strokeStyle = "rgba(44, 42, 39, 0.045)";
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 36) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 36) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Subtle paper dots
       for (const star of starsRef.current) {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        ctx.fillStyle = `rgba(112, 90, 69, ${star.alpha * 0.22})`;
         ctx.fill();
       }
 
-      // ── Bullets (yellow dots) ──
-      ctx.shadowColor = "#fdcb6e";
-      ctx.shadowBlur = 10;
-      ctx.fillStyle = "#fdcb6e";
+      // ── Bullets (warm dots) ──
+      ctx.shadowColor = "rgba(112, 90, 69, 0.18)";
+      ctx.shadowBlur = 4;
+      ctx.fillStyle = "#8e6b50";
       for (const b of gs.bullets) {
         ctx.beginPath();
         ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // ── Enemies (red diamonds) ──
-      ctx.shadowColor = "#e74c3c";
-      ctx.shadowBlur = 12;
+      // ── Enemies (muted diamonds) ──
+      ctx.shadowColor = "rgba(158, 103, 83, 0.2)";
+      ctx.shadowBlur = 5;
 
       for (const e of gs.enemies) {
         const s = e.size * 0.6;
 
         // Outer diamond
-        ctx.fillStyle = "#e74c3c";
+        ctx.fillStyle = "#a96f5b";
         ctx.beginPath();
         ctx.moveTo(e.x, e.y - s);
         ctx.lineTo(e.x + s, e.y);
@@ -389,7 +404,7 @@ export default function GameCard() {
 
         // Inner highlight
         ctx.shadowBlur = 0;
-        ctx.fillStyle = "rgba(255, 120, 120, 0.3)";
+        ctx.fillStyle = "rgba(255, 253, 248, 0.45)";
         ctx.beginPath();
         ctx.moveTo(e.x, e.y - s * 0.4);
         ctx.lineTo(e.x + s * 0.4, e.y);
@@ -400,13 +415,13 @@ export default function GameCard() {
         ctx.shadowBlur = 12;
       }
 
-      // ── Player (triangle / arrow spaceship) ──
+      // ── Player (triangle / arrow) ──
       const p = gs.player;
-      ctx.shadowColor = "#a29bfe";
-      ctx.shadowBlur = 18;
+      ctx.shadowColor = "rgba(105, 127, 159, 0.2)";
+      ctx.shadowBlur = 6;
 
       // Main fuselage (triangle)
-      ctx.fillStyle = "#a29bfe";
+      ctx.fillStyle = "#697f9f";
       ctx.beginPath();
       ctx.moveTo(p.x, p.y - p.size);
       ctx.lineTo(p.x - p.size * 0.85, p.y + p.size * 0.55);
@@ -416,7 +431,7 @@ export default function GameCard() {
 
       // Engine exhaust glow
       ctx.shadowBlur = 0;
-      ctx.fillStyle = "rgba(253, 203, 110, 0.55)";
+      ctx.fillStyle = "rgba(142, 107, 80, 0.45)";
       ctx.beginPath();
       ctx.moveTo(p.x - p.size * 0.35, p.y + p.size * 0.4);
       ctx.lineTo(p.x, p.y + p.size * 0.8);
@@ -425,7 +440,7 @@ export default function GameCard() {
       ctx.fill();
 
       // Core highlight (white inner triangle)
-      ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
+      ctx.fillStyle = "rgba(255, 253, 248, 0.72)";
       ctx.beginPath();
       ctx.moveTo(p.x, p.y - p.size * 0.55);
       ctx.lineTo(p.x - p.size * 0.3, p.y + p.size * 0.15);
@@ -435,7 +450,7 @@ export default function GameCard() {
 
       // ── Score ──
       ctx.shadowBlur = 0;
-      ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+      ctx.fillStyle = "rgba(44, 42, 39, 0.82)";
       ctx.font = 'bold 22px "Geist Mono", "Fira Code", monospace';
       ctx.textAlign = "left";
       ctx.textBaseline = "top";
@@ -443,7 +458,7 @@ export default function GameCard() {
 
       // Score glow highlight for scores > 0
       if (gs.score > 0) {
-        ctx.fillStyle = "rgba(162, 155, 254, 0.15)";
+        ctx.fillStyle = "rgba(105, 127, 159, 0.12)";
         ctx.fillText(`SCORE: ${gs.score}`, 22, 26);
       }
 
@@ -472,21 +487,19 @@ export default function GameCard() {
       {/* ── Card (default / idle state) ── */}
       <motion.div
         ref={cardRef}
-        className="relative cursor-pointer overflow-hidden rounded-lg border border-white/[0.10]"
+        className="relative cursor-pointer overflow-hidden rounded-lg border border-black/[0.08]"
         style={{
           perspective: 1000,
           transformStyle: "preserve-3d",
           willChange: "transform",
           background:
-            "linear-gradient(135deg, #101312 0%, #171917 50%, #070807 100%)",
+            "linear-gradient(135deg, #fffdf8 0%, #fff8eb 58%, #f3eadc 100%)",
           minHeight: 220,
-          boxShadow: "0 18px 60px rgba(0,0,0,0.38)",
+          boxShadow: "0 18px 44px rgba(86,65,41,0.08)",
         }}
         whileHover={{
-          rotateX: 4,
-          rotateY: -4,
-          scale: 1.02,
-          boxShadow: "0 20px 70px rgba(214, 170, 87, 0.16)",
+          y: -2,
+          boxShadow: "0 24px 56px rgba(86,65,41,0.11)",
           transition: { type: "spring", stiffness: 250, damping: 18 },
         }}
         onClick={open}
@@ -504,22 +517,22 @@ export default function GameCard() {
           style={{ transformStyle: "preserve-3d" }}
         >
           <span
-            className="mb-3 block text-4xl"
+            className="mb-3 block font-mono text-sm text-accent-secondary/75"
             style={{ transform: "translateZ(20px)" }}
           >
-            🎮
+            PLAY
           </span>
           <h3
-            className="mb-1 text-xl font-bold text-white"
+            className="mb-1 text-xl font-semibold text-text-primary"
             style={{ transform: "translateZ(10px)" }}
           >
-            飞机大战
+            Canvas 飞机大战小游戏
           </h3>
           <p
             className="text-sm text-text-secondary/85"
             style={{ transform: "translateZ(5px)" }}
           >
-            手势控制 &middot; Canvas 射击游戏
+            作品集里的一个浅色交互 Demo
           </p>
         </div>
 
@@ -534,7 +547,7 @@ export default function GameCard() {
         {expanded && (
           <motion.div
             className="fixed inset-0 z-50"
-            style={{ backgroundColor: "rgba(0,0,0,0.92)" }}
+            style={{ backgroundColor: "rgba(251,248,241,0.96)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -542,7 +555,7 @@ export default function GameCard() {
           >
             <motion.div
               ref={containerRef}
-              className="relative h-full w-full"
+              className="relative m-3 h-[calc(100%-24px)] w-[calc(100%-24px)] overflow-hidden rounded-[1.75rem] border border-black/[0.08] bg-bg-card shadow-[0_24px_70px_rgba(64,52,39,0.14)]"
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
@@ -550,13 +563,13 @@ export default function GameCard() {
             >
               {/* Top bar */}
               <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-5 py-4">
-                <span className="font-mono text-sm tracking-wider text-white/50">
-                  飞机大战 &middot; CANVAS
+                <span className="font-mono text-sm tracking-[0.08em] text-text-muted">
+                  Canvas 飞机大战小游戏 &middot; 交互 Demo
                 </span>
 
                 {/* Close button */}
                 <button
-                  className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm text-white/70 transition-all duration-200 hover:bg-white/15 hover:text-white"
+                  className="flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/75 px-4 py-2 text-sm text-text-secondary transition-all duration-200 hover:bg-white hover:text-text-primary"
                   onClick={close}
                   aria-label="关闭游戏"
                 >
