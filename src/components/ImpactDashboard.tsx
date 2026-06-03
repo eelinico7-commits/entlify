@@ -30,6 +30,8 @@ const itemVariants = {
 };
 
 export default function ImpactDashboard() {
+  const loopingMetrics = [...metrics, ...metrics];
+
   return (
     <motion.section
       id="metrics"
@@ -48,16 +50,20 @@ export default function ImpactDashboard() {
       </div>
 
       {/* Achievement wall */}
-      <div className="relative rounded-2xl border-y border-black/[0.08] bg-white/35 py-8">
-        <div className="relative grid grid-cols-2 gap-y-8 sm:grid-cols-4">
-          {metrics.map((m, i) => (
+      <div className="relative overflow-hidden rounded-2xl border-y border-black/[0.08] bg-white/35 py-8">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#fffdf8]/90 to-transparent sm:w-20" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#fffdf8]/90 to-transparent sm:w-20" />
+
+        <div className="portfolio-marquee flex w-max items-stretch">
+          {loopingMetrics.map((m, i) => (
             <motion.div
-              key={m.label}
-              className="group relative px-5 sm:px-7"
-              custom={i}
+              key={`${m.label}-${i}`}
+              className="group relative w-[260px] shrink-0 px-5 sm:w-[335px] sm:px-7"
+              custom={i % metrics.length}
               variants={itemVariants}
               initial="hidden"
               whileInView="visible"
+              aria-hidden={i >= metrics.length}
               viewport={{ once: true }}
               whileHover={{ y: -2 }}
             >
