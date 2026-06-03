@@ -10,6 +10,7 @@ import CreatorHub from "./CreatorHub";
 import InterestsCard from "./InterestsCard";
 import ProjectShowcase from "./ProjectShowcase";
 import CyberPhilosopherPromo from "./CyberPhilosopherPromo";
+import FeaturedVideoCase from "./FeaturedVideoCase";
 import SectionHeading from "./SectionHeading";
 
 const GameCard = dynamic(() => import("./GameCard"), { ssr: false });
@@ -54,6 +55,8 @@ export default function BentoGrid() {
 
         {/* 赛博先哲 — 主推大卡片 */}
         <CyberPhilosopherPromo />
+
+        <FeaturedVideoCase />
 
         {/* 其他项目 — Bento 网格 */}
         <div className="card-glow mt-6 rounded-lg">
