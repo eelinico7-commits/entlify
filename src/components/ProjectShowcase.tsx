@@ -34,6 +34,16 @@ const otherProjects = [
     tags: ["Claude Code", "Next.js", "Canvas"],
     gradient: "from-white to-bg-secondary/55",
   },
+  {
+    icon: "04",
+    title: "企业赋能 AI 命题擂台挑战赛",
+    cover: "Business Plan / AI",
+    tech: "三等奖 / 1000 元奖金",
+    description:
+      "负责商业计划书结构梳理、AI 应用场景表达与路演材料优化。",
+    tags: ["AI 应用", "商业分析", "路演表达"],
+    gradient: "from-white to-bg-secondary/55",
+  },
 ];
 
 const itemVariants = {
