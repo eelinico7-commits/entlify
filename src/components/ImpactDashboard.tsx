@@ -13,10 +13,10 @@ interface MetricItem {
 }
 
 const metrics: MetricItem[] = [
-  { value: "17", numeric: 17, suffix: "条", label: "17", sublabel: "抖音校园IP内容" },
-  { value: "8.9W+", numeric: 8.9, suffix: "W+", label: "8.9W+", sublabel: "抖音累计播放" },
-  { value: "18", numeric: 18, suffix: "篇", label: "18", sublabel: "小红书校园IP内容" },
-  { value: "1.9W+", numeric: 1.9, suffix: "W+", label: "1.9W+", sublabel: "小红书累计阅读" },
+  { value: "23", numeric: 23, suffix: "条", label: "23", sublabel: "抖音校园IP内容" },
+  { value: "16.5W+", numeric: 16.5, suffix: "W+", label: "16.5W+", sublabel: "抖音累计播放" },
+  { value: "23", numeric: 23, suffix: "篇", label: "23", sublabel: "小红书校园IP内容" },
+  { value: "3.0W+", numeric: 3.0, suffix: "W+", label: "3.0W+", sublabel: "小红书累计阅读" },
 ];
 
 const itemVariants = {
